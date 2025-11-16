@@ -1,0 +1,55 @@
+<templateSet group="DPC++">
+  <template name="syclqueue" value="sycl::queue q{sycl::$SELECTOR${}};$END$" description="Create SYCL queue" toReformat="true" toShortenFQNames="true">
+    <variable name="SELECTOR" expression="completeSmart()" defaultValue="&quot;default_selector&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclbuffer" value="sycl::buffer&lt;$TYPE$&gt; $NAME$($SIZE$);$END$" description="Create SYCL buffer" toReformat="true" toShortenFQNames="true">
+    <variable name="TYPE" expression="" defaultValue="&quot;int&quot;" alwaysStopAt="true" />
+    <variable name="NAME" expression="" defaultValue="&quot;buf&quot;" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="&quot;N&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclsubmit" value="q.submit([&amp;](sycl::handler&amp; h) {&#10;    $END$&#10;});" description="Submit command group" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclparallel" value="h.parallel_for(sycl::range&lt;1&gt;($SIZE$), [=](sycl::id&lt;1&gt; idx) {&#10;    $END$&#10;});" description="Parallel for kernel" toReformat="true" toShortenFQNames="true">
+    <variable name="SIZE" expression="" defaultValue="&quot;N&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclaccess" value="auto $NAME$ = $BUFFER$.get_access&lt;sycl::access::mode::$MODE$&gt;(h);$END$" description="Get buffer accessor" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;acc&quot;" alwaysStopAt="true" />
+    <variable name="BUFFER" expression="" defaultValue="&quot;buf&quot;" alwaysStopAt="true" />
+    <variable name="MODE" expression="completeSmart()" defaultValue="&quot;read_write&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclmain" value="#include &lt;sycl/sycl.hpp&gt;&#10;#include &lt;iostream&gt;&#10;&#10;int main() {&#10;    try {&#10;        sycl::queue q{sycl::default_selector{}};&#10;        std::cout &lt;&lt; &quot;Running on: &quot; &#10;                  &lt;&lt; q.get_device().get_info&lt;sycl::info::device::name&gt;()&#10;                  &lt;&lt; std::endl;&#10;        &#10;        $END$&#10;        &#10;    } catch (sycl::exception const&amp; e) {&#10;        std::cerr &lt;&lt; &quot;SYCL exception: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;&#10;        return 1;&#10;    }&#10;    return 0;&#10;}" description="DPC++ main template" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+
+  <template name="syclusm" value="auto $NAME$ = sycl::malloc_$TYPE$&lt;$DTYPE$&gt;($SIZE$, q);&#10;sycl::free($NAME$, q);$END$" description="USM allocation" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;ptr&quot;" alwaysStopAt="true" />
+    <variable name="TYPE" expression="completeSmart()" defaultValue="&quot;device&quot;" alwaysStopAt="true" />
+    <variable name="DTYPE" expression="" defaultValue="&quot;int&quot;" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="&quot;N&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="C++" value="true" />
+    </context>
+  </template>
+</templateSet>

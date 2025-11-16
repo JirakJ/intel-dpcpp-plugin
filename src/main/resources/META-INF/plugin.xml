@@ -1,0 +1,151 @@
+<idea-plugin>
+    <id>com.jakubjirak.dpcpp</id>
+    <name>Intel DPC++ Support</name>
+    <vendor email="jakub.jirak@pm.me" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
+    
+    <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
+
+    <description><![CDATA[
+    <h2>Intel DPC++ (Data Parallel C++) Support for CLion</h2>
+    
+    <p>Brings comprehensive Intel oneAPI DPC++/SYCL development capabilities to CLion IDE.</p>
+    
+    <h3>Features (Free)</h3>
+    <ul>
+      <li><b>Syntax Highlighting</b> - SYCL keywords, parallel constructs, device selectors</li>
+      <li><b>File Type Support</b> - .dpcpp, .dp.cpp file recognition</li>
+      <li><b>CMake Integration</b> - oneAPI compiler detection and configuration</li>
+      <li><b>Project Templates</b> - Quick-start DPC++ project creation</li>
+      <li><b>Code Completion</b> - SYCL API autocomplete (sycl::queue, sycl::buffer, etc.)</li>
+      <li><b>Basic Navigation</b> - Go to definition, find usages for DPC++ constructs</li>
+    </ul>
+    
+    <h3>Premium Features (Coming Soon)</h3>
+    <ul>
+      <li><b>Advanced Debugging</b> - gdb-oneapi integration with GPU thread visualization</li>
+      <li><b>Performance Analysis</b> - Intel VTune Profiler integration</li>
+      <li><b>Kernel Analysis</b> - Occupancy prediction, memory bandwidth estimation</li>
+      <li><b>Intel Advisor Integration</b> - Roofline analysis and optimization suggestions</li>
+    </ul>
+    
+    <h3>Requirements</h3>
+    <ul>
+      <li>Intel oneAPI Base Toolkit 2024.0+ (with DPC++ compiler)</li>
+      <li>CLion 2023.2+</li>
+      <li>CMake 3.20+</li>
+    </ul>
+    
+    <p><b>Open Source:</b> Apache 2.0 License - <a href="https://github.com/jakubjirak/dpcpp-clion-plugin">GitHub Repository</a></p>
+    <p><b>Support:</b> <a href="https://github.com/jakubjirak/dpcpp-clion-plugin/issues">Report Issues</a> | <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/overview.html">DPC++ Training</a></p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <h3>0.1.x - Initial Public Beta</h3>
+    <ul>
+      <li>SYCL 2020 syntax highlighting</li>
+      <li>DPC++ file type recognition</li>
+      <li>oneAPI CMake toolchain detection</li>
+      <li>Basic code completion for SYCL APIs</li>
+      <li>Project templates for common DPC++ patterns</li>
+    </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.cidr.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- File Type -->
+        <fileType 
+            name="DPC++ File" 
+            implementationClass="com.jakubjirak.dpcpp.DpcppFileType"
+            fieldName="INSTANCE"
+            language="C++"
+            extensions="dpcpp;dp.cpp"/>
+        
+        <!-- Syntax Highlighting -->
+        <lang.syntaxHighlighterFactory 
+            language="C++" 
+            implementationClass="com.jakubjirak.dpcpp.highlighting.DpcppSyntaxHighlighterFactory"/>
+        
+        <!-- Code Completion -->
+        <completion.contributor 
+            language="C++" 
+            implementationClass="com.jakubjirak.dpcpp.completion.DpcppCompletionContributor"/>
+        
+        <!-- Annotator for semantic highlighting -->
+        <annotator 
+            language="C++" 
+            implementationClass="com.jakubjirak.dpcpp.highlighting.DpcppAnnotator"/>
+        
+        <!-- CMake Integration -->
+        <projectConfigurable 
+            parentId="project.propCompiler"
+            instance="com.jakubjirak.dpcpp.cmake.DpcppCMakeConfigurable"
+            displayName="Intel DPC++ Compiler"/>
+        
+        <!-- Project Template - Coming in v0.2 -->
+        <!-- <directoryProjectGenerator implementation="com.jakubjirak.dpcpp.project.DpcppProjectGenerator"/> -->
+        
+        <!-- Color Settings -->
+        <colorSettingsPage 
+            implementation="com.jakubjirak.dpcpp.highlighting.DpcppColorSettingsPage"/>
+        
+        <!-- Live Templates -->
+        <defaultLiveTemplates file="/liveTemplates/DpcppTemplates.xml"/>
+        <liveTemplateContext 
+            contextId="C++"
+            implementation="com.jakubjirak.dpcpp.templates.DpcppTemplateContextType"/>
+        
+        <!-- Documentation Provider -->
+        <lang.documentationProvider 
+            language="C++" 
+            implementationClass="com.jakubjirak.dpcpp.documentation.DpcppDocumentationProvider"/>
+        
+        <!-- Notification -->
+        <notificationGroup 
+            id="DPC++ Notifications" 
+            displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <group id="DpcppMenu" text="DPC++" popup="true" icon="/icons/dpcpp.svg">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            
+            <action id="DpcppNewProject" 
+                    class="com.jakubjirak.dpcpp.actions.NewDpcppProjectAction"
+                    text="New DPC++ Project"
+                    description="Create a new Intel DPC++ project"
+                    icon="/icons/dpcpp.svg"/>
+            
+            <separator/>
+            
+            <action id="DpcppConfigureToolchain"
+                    class="com.jakubjirak.dpcpp.actions.ConfigureToolchainAction"
+                    text="Configure oneAPI Toolchain"
+                    description="Detect and configure Intel oneAPI DPC++ compiler"
+                    icon="/icons/toolchain.svg"/>
+            
+            <action id="DpcppShowExamples"
+                    class="com.jakubjirak.dpcpp.actions.ShowExamplesAction"
+                    text="Open oneAPI Code Samples"
+                    description="Browse Intel oneAPI code samples"
+                    icon="/icons/samples.svg"/>
+            
+            <separator/>
+            
+            <action id="DpcppDocumentation"
+                    class="com.jakubjirak.dpcpp.actions.OpenDocumentationAction"
+                    text="DPC++ Documentation"
+                    description="Open Intel DPC++ documentation"
+                    icon="AllIcons.Toolwindows.Documentation"/>
+        </group>
+        
+        <action id="DpcppRunGdbOneApi"
+                class="com.jakubjirak.dpcpp.actions.RunGdbOneApiAction"
+                text="Debug with gdb-oneapi"
+                description="Launch Intel oneAPI debugger"
+                icon="AllIcons.Actions.StartDebugger">
+            <add-to-group group-id="RunMenu" anchor="after" relative-to-action="Debug"/>
+        </action>
+    </actions>
+</idea-plugin>

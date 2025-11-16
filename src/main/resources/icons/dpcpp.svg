@@ -1,0 +1,26 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <!-- Intel Blue Background -->
+  <rect width="16" height="16" rx="2" fill="#0071C5"/>
+  
+  <!-- DPC++ Symbol - Parallel lines representing data parallelism -->
+  <g fill="#FFFFFF">
+    <!-- Vertical parallel bars -->
+    <rect x="2" y="3" width="1.5" height="10" rx="0.5"/>
+    <rect x="5" y="4" width="1.5" height="8" rx="0.5"/>
+    <rect x="8" y="3.5" width="1.5" height="9" rx="0.5"/>
+    <rect x="11" y="4.5" width="1.5" height="7" rx="0.5"/>
+    
+    <!-- Plus symbols for C++ -->
+    <g transform="translate(13, 2)">
+      <rect x="0.5" y="0" width="1" height="3" rx="0.3"/>
+      <rect x="0" y="0.5" width="2" height="1" rx="0.3"/>
+    </g>
+    <g transform="translate(13, 5.5)">
+      <rect x="0.5" y="0" width="1" height="3" rx="0.3"/>
+      <rect x="0" y="0.5" width="2" height="1" rx="0.3"/>
+    </g>
+  </g>
+  
+  <!-- Accent line showing data flow -->
+  <path d="M 2 13.5 L 14 13.5" stroke="#00C7FD" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+</svg>
