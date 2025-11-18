@@ -6,9 +6,9 @@
     <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
 
     <description><![CDATA[
-    <h2>Intel DPC++ (Data Parallel C++) Support for CLion</h2>
+    <h2>Intel DPC++ (Data Parallel C++) Support for JetBrains IDEs</h2>
     
-    <p>Brings comprehensive Intel oneAPI DPC++/SYCL development capabilities to CLion IDE.</p>
+    <p>Brings comprehensive Intel oneAPI DPC++/SYCL development capabilities to all JetBrains IDEs with C/C++ support.</p>
     
     <h3>Features (Free)</h3>
     <ul>
@@ -20,19 +20,20 @@
       <li><b>Basic Navigation</b> - Go to definition, find usages for DPC++ constructs</li>
     </ul>
     
-    <h3>Premium Features (Coming Soon)</h3>
+    <h3>Premium Features</h3>
     <ul>
-      <li><b>Advanced Debugging</b> - gdb-oneapi integration with GPU thread visualization</li>
-      <li><b>Performance Analysis</b> - Intel VTune Profiler integration</li>
+      <li><b>GPU Debugging</b> - gdb-oneapi integration with GPU thread visualization and memory inspection</li>
+      <li><b>Performance Profiling</b> - Intel VTune Profiler integration (GPU hotspots, offload analysis)</li>
+      <li><b>Device Explorer</b> - Real-time device monitoring and capability inspection</li>
+      <li><b>Code Analysis</b> - Advanced SYCL performance inspections and optimization hints</li>
       <li><b>Kernel Analysis</b> - Occupancy prediction, memory bandwidth estimation</li>
-      <li><b>Intel Advisor Integration</b> - Roofline analysis and optimization suggestions</li>
     </ul>
     
     <h3>Requirements</h3>
     <ul>
       <li>Intel oneAPI Base Toolkit 2024.0+ (with DPC++ compiler)</li>
-      <li>CLion 2023.2+</li>
-      <li>CMake 3.20+</li>
+      <li>JetBrains IDE 2023.2+ (IntelliJ IDEA, CLion, PyCharm, WebStorm, etc.)</li>
+      <li>CMake 3.20+ (for CLion integration)</li>
     </ul>
     
     <p><b>Open Source:</b> Apache 2.0 License - <a href="https://github.com/jakubjirak/dpcpp-clion-plugin">GitHub Repository</a></p>
@@ -77,12 +78,6 @@
             language="C++" 
             implementationClass="com.jakubjirak.dpcpp.highlighting.DpcppAnnotator"/>
         
-        <!-- CMake Integration -->
-        <projectConfigurable 
-            parentId="project.propCompiler"
-            instance="com.jakubjirak.dpcpp.cmake.DpcppCMakeConfigurable"
-            displayName="Intel DPC++ Compiler"/>
-        
         <!-- Project Template - Coming in v0.2 -->
         <!-- <directoryProjectGenerator implementation="com.jakubjirak.dpcpp.project.DpcppProjectGenerator"/> -->
         
@@ -105,6 +100,31 @@
         <notificationGroup 
             id="DPC++ Notifications" 
             displayType="BALLOON"/>
+        
+        <!-- Premium Features -->
+        <!-- Code Inspections -->
+        <localInspection 
+            language="C++"
+            displayName="SYCL Code Quality"
+            groupName="DPC++ / SYCL"
+            enabledByDefault="true"
+            level="WARNING"
+            implementationClass="com.jakubjirak.dpcpp.analysis.SyclCodeInspection"/>
+        
+        <localInspection 
+            language="C++"
+            displayName="SYCL Performance Optimization"
+            groupName="DPC++ / SYCL"
+            enabledByDefault="true"
+            level="WEAK WARNING"
+            implementationClass="com.jakubjirak.dpcpp.analysis.PerformanceInspection"/>
+        
+        <!-- Tool Window -->
+        <toolWindow 
+            id="DPC++ Devices"
+            anchor="right"
+            icon="/icons/dpcpp.svg"
+            factoryClass="com.jakubjirak.dpcpp.toolwindow.DeviceExplorerToolWindow"/>
     </extensions>
 
     <actions>
@@ -138,6 +158,84 @@
                     text="DPC++ Documentation"
                     description="Open Intel DPC++ documentation"
                     icon="AllIcons.Toolwindows.Documentation"/>
+            
+            <separator/>
+            
+            <!-- Premium Actions -->
+            <action id="DpcppDebugGdbOneApi"
+                    class="com.jakubjirak.dpcpp.actions.DebugWithGdbOneApiAction"
+                    text="Debug with gdb-oneapi (Premium)"
+                    description="GPU debugging with Intel oneAPI debugger"
+                    icon="AllIcons.Actions.StartDebugger"/>
+            
+            <action id="DpcppProfileVTune"
+                    class="com.jakubjirak.dpcpp.actions.ProfileWithVTuneAction"
+                    text="Profile with VTune (Premium)"
+                    description="Performance analysis with Intel VTune Profiler"
+                    icon="AllIcons.Actions.Profile"/>
+            
+            <separator/>
+            
+            <!-- Advanced Analysis -->
+            <action id="DpcppKernelOccupancy"
+                    class="com.jakubjirak.dpcpp.actions.AnalyzeKernelOccupancyAction"
+                    text="Kernel Occupancy Calculator (Premium)"
+                    description="Estimate GPU occupancy and identify limiting factors"
+                    icon="AllIcons.General.Calculator"/>
+            
+            <action id="DpcppAdvisorRoofline"
+                    class="com.jakubjirak.dpcpp.actions.AdvisorRooflineAction"
+                    text="Intel Advisor Analysis (Premium)"
+                    description="Roofline analysis and optimization recommendations"
+                    icon="AllIcons.Actions.ProfileCPU"/>
+            
+            <separator/>
+            
+            <!-- Advanced Premium Features (v0.4) -->
+            <action id="DpcppFpgaOptimization"
+                    class="com.jakubjirak.dpcpp.actions.FpgaOptimizationAction"
+                    text="FPGA Optimization Analyzer (Premium)"
+                    description="FPGA-specific optimization and resource estimation"
+                    icon="AllIcons.Nodes.ModuleGroup"/>
+            
+            <action id="DpcppMultiDevice"
+                    class="com.jakubjirak.dpcpp.actions.MultiDeviceAction"
+                    text="Multi-Device Orchestrator (Premium)"
+                    description="Workload distribution across multiple devices"
+                    icon="AllIcons.Actions.MatchCase"/>
+            
+            <action id="DpcppAutoTune"
+                    class="com.jakubjirak.dpcpp.actions.AutoTuneAction"
+                    text="Auto-Tune Parameters (Premium)"
+                    description="Automatic work-group size optimization"
+                    icon="AllIcons.Actions.Lightning"/>
+            
+            <separator/>
+            
+            <!-- Advanced Premium Features (v0.5) -->
+            <action id="DpcppAiOptimization"
+                    class="com.jakubjirak.dpcpp.actions.AiOptimizationAction"
+                    text="AI Optimization Assistant (Premium)"
+                    description="AI-powered optimization suggestions"
+                    icon="AllIcons.Actions.IntentionBulb"/>
+            
+            <action id="DpcppLiveEdit"
+                    class="com.jakubjirak.dpcpp.actions.LiveEditAction"
+                    text="Live Kernel Editor (Premium)"
+                    description="Hot-reload kernels without restart"
+                    icon="AllIcons.Actions.RefactoringBulb"/>
+            
+            <action id="DpcppDevCloud"
+                    class="com.jakubjirak.dpcpp.actions.DevCloudAction"
+                    text="Intel DevCloud (Premium)"
+                    description="Cloud compilation and testing"
+                    icon="AllIcons.Ide.Remote"/>
+            
+            <action id="DpcppDashboard"
+                    class="com.jakubjirak.dpcpp.actions.DashboardAction"
+                    text="Performance Dashboard (Premium)"
+                    description="Visualize performance metrics"
+                    icon="AllIcons.Actions.Show"/>
         </group>
         
         <action id="DpcppRunGdbOneApi"

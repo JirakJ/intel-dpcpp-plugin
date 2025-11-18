@@ -10,7 +10,7 @@
    - Java source files for core functionality
    - SVG vector icons (dpcpp.svg, toolchain.svg, samples.svg)
 
-2. **Core Features (v0.1 MVP)**
+2. **Core Features (v0.1 MVP - Community Edition)**
    - File type support (.dpcpp, .dp.cpp)
    - SYCL syntax highlighting
    - Code completion for SYCL APIs
@@ -19,12 +19,27 @@
    - Documentation provider
    - Action menu (Tools → DPC++)
 
-3. **Documentation**
+3. **Premium Features (v0.2 - Professional Edition)**
+   - **GPU Debugging**: gdb-oneapi integration
+     - GPU thread inspector
+     - Device memory viewer
+     - Kernel breakpoints
+   - **Performance Profiling**: VTune Profiler integration
+     - GPU hotspots analysis
+     - GPU offload analysis
+     - Memory bandwidth metrics
+   - **Device Explorer**: Tool window for device monitoring
+   - **Advanced Analysis**: Code quality and performance inspections
+
+4. **Documentation**
    - README.md - User guide
+   - PREMIUM_FEATURES.md - Premium features documentation
+   - LICENSING.md - Pricing and licensing
    - CONTRIBUTING.md - Developer guide  
    - CHANGELOG.md - Version history
    - ARCHITECTURE.md - Technical design
-   - Example project (vector-add)
+   - Tutorials (GPU debugging, VTune profiling)
+   - Example projects (debugging, profiling)
 
 4. **Automation**
    - GitHub Actions CI/CD workflow
@@ -103,17 +118,27 @@ Every build gets a unique version number automatically!
 
 ✅ **Auto-versioning**: Every build gets unique timestamp version  
 ✅ **Vector icons**: SVG format, scalable for all IDE themes  
-✅ **Freemium ready**: Basic features free, premium placeholders for v0.2+  
-✅ **Open source**: Apache 2.0 license  
+✅ **Freemium model**: Community (free) + Professional ($99/year) + Enterprise ($499/year)  
+✅ **Open source core**: Apache 2.0 license (community features)  
+✅ **Premium integrations**: gdb-oneapi, VTune Profiler, Device Explorer  
 ✅ **CI/CD**: GitHub Actions builds on every commit  
 
 ### Market Strategy
 
-- **Free open-source core** (Apache 2.0)
-- **Intel partnership** for development funding
-- **Premium features** (v0.2+): debugging, profiling, analysis
-- **Enterprise licensing** for support and training
+- **Community Edition**: Free, Apache 2.0 (basic features)
+- **Professional Edition**: $99/year (GPU debugging, VTune profiling)
+- **Enterprise Edition**: $499/year (unlimited seats, priority support)
+- **Academic discount**: 50% off Professional
+- **Intel partnership** for development funding + official endorsement
 - **Target**: $30K-100K/year revenue by Year 3
+
+### Pricing Tiers
+
+| Edition | Price | Key Features |
+|---------|-------|--------------|
+| **Community** | Free | Syntax highlighting, completion, templates |
+| **Professional** | $99/year | + GPU debugging, VTune profiling, Device Explorer |
+| **Enterprise** | $499/year | + Unlimited seats, priority support, training |
 
 ### Revenue Timeline
 
