@@ -1,0 +1,76 @@
+#include <sycl/sycl.hpp>
+#include <vector>
+#include <iostream>
+
+using namespace sycl;
+
+int main() {
+    const size_t N = 1024;
+    std::vector<int> a(N), b(N), c(N);
+    
+    // Initialize data
+    for (size_t i = 0; i < N; i++) {
+        a[i] = static_cast<int>(i);
+        b[i] = static_cast<int>(i * 2);
+    }
+    
+    try {
+        queue q{gpu_selector_v};
+        std::cout << "Running on: " 
+                  << q.get_device().get_info<info::device::name>() 
+                  << std::endl;
+        
+        {
+            buffer<int> buf_a(a.data(), range<1>(N));
+            buffer<int> buf_b(b.data(), range<1>(N));
+            buffer<int> buf_c(c.data(), range<1>(N));
+            
+            q.submit([&](handler& h) {
+                auto acc_a = buf_a.get_access<access::mode::read>(h);
+                auto acc_b = buf_b.get_access<access::mode::read>(h);
+                auto acc_c = buf_c.get_access<access::mode::write>(h);
+                
+                // DEBUGGING EXERCISE:
+                // 1. Set breakpoint on line below (inside lambda)
+                // 2. Run "Debug with gdb-oneapi (Premium)"
+                // 3. Inspect GPU threads when breakpoint hits
+                // 4. Fix the off-by-one bug (idx + 1)
+                
+                h.parallel_for(range<1>(N), [=](id<1> idx) {
+                    // BUG: Off-by-one error - should be acc_b[idx]
+                    if (idx[0] < N - 1) {
+                        acc_c[idx] = acc_a[idx] + acc_b[idx + 1];
+                    } else {
+                        acc_c[idx] = acc_a[idx];
+                    }
+                });
+            });
+        }
+        
+        // Verify results
+        bool passed = true;
+        for (size_t i = 0; i < N; i++) {
+            int expected = a[i] + b[i];
+            if (c[i] != expected) {
+                if (passed) {
+                    std::cout << "\n❌ FAILED - Errors detected:\n";
+                    passed = false;
+                }
+                if (i < 10) {  // Show first 10 errors
+                    std::cout << "  c[" << i << "] = " << c[i] 
+                              << " (expected " << expected << ")\n";
+                }
+            }
+        }
+        
+        if (passed) {
+            std::cout << "✅ PASSED - All results correct!\n";
+        }
+        
+    } catch (exception const& e) {
+        std::cout << "SYCL exception caught: " << e.what() << std::endl;
+        return 1;
+    }
+    
+    return 0;
+}

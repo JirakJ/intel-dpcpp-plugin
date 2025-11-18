@@ -39,7 +39,7 @@ dependencies {
 intellij {
     version.set("2023.2.5")
     type.set("CL")
-    plugins.set(listOf("com.intellij.clion", "com.intellij.cidr.lang", "com.intellij.cidr.base"))
+    plugins.set(listOf("com.intellij.cidr.lang", "com.intellij.cidr.base"))
     updateSinceUntilBuild.set(false)
 }
 

@@ -17,11 +17,41 @@
 - ✅ **Documentation on Hover** - Inline API documentation
 - ✅ **Project Templates** - Quick-start DPC++ project creation
 
-### Premium (Coming Soon)
-- 🚧 **Advanced Debugging** - gdb-oneapi integration with GPU thread visualization
-- 🚧 **Performance Analysis** - Intel VTune Profiler integration
-- 🚧 **Kernel Analysis** - Occupancy prediction, memory bandwidth estimation
-- 🚧 **Intel Advisor Integration** - Roofline analysis and optimization suggestions
+### Premium ([Professional Edition](docs/LICENSING.md))
+
+**v0.2-v0.3 Features**:
+- ⭐ **GPU Debugging** - gdb-oneapi integration with GPU thread visualization
+- ⭐ **Performance Profiling** - Intel VTune Profiler integration (4 analysis types)
+- ⭐ **Device Explorer** - Real-time device monitoring tool window
+- ⭐ **Advanced Code Analysis** - SYCL quality and performance inspections
+- ⭐ **Kernel Analysis** - Occupancy calculator & bandwidth estimator
+- ⭐ **Intel Advisor** - Roofline analysis and offload modeling
+- ⭐ **SYCL Refactorings** - Buffer→USM, Extract Kernel, Optimize Work-Groups
+
+**v0.4 Features**:
+- 🔌 **FPGA Optimization** - Resource estimation, pragma suggestions, pipeline analysis
+- 🖥️ **Multi-Device Orchestrator** - Intelligent workload distribution across devices
+- ⚡ **Auto-Tuning** - Empirical work-group size optimization
+
+**v0.5 Features**:
+- 🤖 **AI Optimization** - Pattern-based suggestions with 70-90% confidence
+- 🔄 **Live Editing** - Hot-reload kernels in ~100ms without restart
+- ☁️ **DevCloud** - Cloud compilation on 7 device types (GPU Max, Arc, FPGA)
+- 📊 **Dashboard** - Real-time performance visualization & insights
+
+**v1.0 Features (NEW!)**:
+- 🌐 **Language Server** - LSP integration with clangd for advanced semantic analysis
+- 👥 **Team Collaboration** - Shared performance baselines, regression tracking
+- 🏢 **Enterprise** - SSO, license management, admin dashboard
+- 🔄 **CI/CD** - Automated performance testing in pipelines
+
+📖 **[View All Premium Features →](docs/ALL_PREMIUM_FEATURES.md)**  
+📖 **[View v0.2-v0.3 Features →](docs/PREMIUM_FEATURES.md)**  
+📖 **[View v0.4 Features →](docs/V04_FEATURES.md)**  
+📖 **[View v0.5 Features →](docs/V05_FEATURES.md)**  
+📖 **[View v1.0 Features →](docs/V10_FEATURES.md)**  
+💼 **[View Licensing & Pricing →](docs/LICENSING.md)**  
+🎓 **Academic/Non-profit: 50% discount**
 
 ## Requirements
 
@@ -128,9 +158,21 @@ IntelliSense for SYCL APIs:
 - Type `.submit` → Auto-complete queue operations
 - Type `parallel_for` → Get parameter hints
 
-## Debugging (v0.2 Roadmap)
+## GPU Debugging (Premium)
 
-Currently use command-line debugger:
+With Professional Edition, debug SYCL kernels directly in CLion:
+
+**Tools → DPC++ → Debug with gdb-oneapi (Premium)**
+
+Features:
+- Set breakpoints in kernels
+- Inspect GPU thread state
+- View device memory
+- Step through kernel execution
+
+📖 **[GPU Debugging Tutorial →](docs/tutorials/gpu-debugging.md)**
+
+### Command-line (Community)
 ```bash
 source /opt/intel/oneapi/setvars.sh
 gdb-oneapi ./build/main
@@ -141,12 +183,36 @@ gdb-oneapi ./build/main
 (gdb) thread 2:4            # Switch to thread 2, SIMD lane 4
 ```
 
+## Performance Profiling (Premium)
+
+Optimize with Intel VTune Profiler integration:
+
+**Tools → DPC++ → Profile with VTune (Premium)**
+
+Analysis types:
+- GPU Hotspots - Find performance bottlenecks
+- GPU Offload - Track host-device transfers
+- Memory Analysis - Bandwidth utilization
+
+📖 **[VTune Profiling Guide →](docs/tutorials/vtune-profiling.md)**
+
 ## Documentation
 
+### Plugin Documentation
+- 📖 [Premium Features Guide](docs/PREMIUM_FEATURES.md)
+- 💼 [Licensing & Pricing](docs/LICENSING.md)
+- 🏗️ [Architecture](docs/ARCHITECTURE.md)
+- 🤝 [Contributing Guide](CONTRIBUTING.md)
+
+### Intel Resources
 - [Intel DPC++ Developer Guide](https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/developer-guide-reference/current/overview.html)
 - [SYCL 2020 Specification](https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html)
 - [oneAPI Code Samples](https://github.com/oneapi-src/oneAPI-samples)
-- [Plugin Issue Tracker](https://github.com/jakubjirak/dpcpp-clion-plugin/issues)
+
+### Support
+- [GitHub Issues](https://github.com/jakubjirak/dpcpp-clion-plugin/issues) - Bug reports
+- [GitHub Discussions](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions) - Questions
+- Email: jakub.jirak@pm.me (Professional/Enterprise support)
 
 ## Contributing
 
@@ -185,20 +251,40 @@ Contributions welcome! This is an **Apache 2.0 open-source project**.
 - Code completion
 - Live templates
 
-### Phase 2 (v0.2.x - Q2 2025)
+### Phase 2 (v0.2.x) ✅
 - gdb-oneapi debugger integration
 - GPU thread visualization
-- VTune Profiler launch integration
-- Enhanced CMake configuration UI
+- VTune Profiler integration
+- Device Explorer tool window
+- Advanced code inspections
 
-### Phase 3 (v0.3.x - Q3 2025)
+### Phase 3 (v0.3.x) ✅
 - Kernel occupancy analysis
-- Memory bandwidth prediction
+- Memory bandwidth predictor
 - Intel Advisor integration
-- Roofline analysis visualization
+- SYCL refactorings (3 types)
 
-### Phase 4 (v1.0.0 - Q4 2025)
-- Full heterogeneous debugging workflow
+### Phase 4 (v0.4.x) ✅
+- FPGA optimization analyzer
+- Multi-device orchestrator
+- Auto-tuning framework
+
+### Phase 5 (v0.5.x) ✅
+- AI-powered optimization assistant
+- Live kernel editing with hot-reload
+- Intel DevCloud integration
+- Performance dashboard
+
+### Phase 6 (v1.0.0 - Current) ✅
+- Language Server Protocol (LSP)
+- Team collaboration features
+- Enterprise license management
+- CI/CD integration
+- Advanced analytics
+
+### Future (v1.1+)
+- Enhanced AI models
+- More device support
 - Performance optimization suggestions
 - Team collaboration features
 - Enterprise support options

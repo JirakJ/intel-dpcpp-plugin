@@ -1,0 +1,181 @@
+#include <sycl/sycl.hpp>
+#include <vector>
+#include <iostream>
+#include <chrono>
+
+using namespace sycl;
+
+// Unoptimized version - baseline
+void matrixMultiply_v1(queue& q, const float* A, const float* B, float* C, 
+                        size_t M, size_t N, size_t K) {
+    buffer<float, 2> buf_a(A, range<2>(M, K));
+    buffer<float, 2> buf_b(B, range<2>(K, N));
+    buffer<float, 2> buf_c(C, range<2>(M, N));
+    
+    q.submit([&](handler& h) {
+        auto acc_a = buf_a.get_access<access::mode::read>(h);
+        auto acc_b = buf_b.get_access<access::mode::read>(h);
+        auto acc_c = buf_c.get_access<access::mode::write>(h);
+        
+        // PERFORMANCE ISSUE: No work-group optimization
+        h.parallel_for(range<2>(M, N), [=](id<2> idx) {
+            float sum = 0.0f;
+            size_t row = idx[0];
+            size_t col = idx[1];
+            
+            // PERFORMANCE ISSUE: Non-coalesced memory access
+            for (size_t k = 0; k < K; k++) {
+                sum += acc_a[row][k] * acc_b[k][col];
+            }
+            acc_c[row][col] = sum;
+        });
+    });
+}
+
+// Optimized version - with work-groups and local memory
+void matrixMultiply_v2(queue& q, const float* A, const float* B, float* C,
+                        size_t M, size_t N, size_t K) {
+    const size_t TILE_SIZE = 16;
+    
+    buffer<float, 2> buf_a(A, range<2>(M, K));
+    buffer<float, 2> buf_b(B, range<2>(K, N));
+    buffer<float, 2> buf_c(C, range<2>(M, N));
+    
+    q.submit([&](handler& h) {
+        auto acc_a = buf_a.get_access<access::mode::read>(h);
+        auto acc_b = buf_b.get_access<access::mode::read>(h);
+        auto acc_c = buf_c.get_access<access::mode::write>(h);
+        
+        // Local memory for tiling
+        local_accessor<float, 2> tile_a(range<2>(TILE_SIZE, TILE_SIZE), h);
+        local_accessor<float, 2> tile_b(range<2>(TILE_SIZE, TILE_SIZE), h);
+        
+        // Use nd_range for work-group control
+        h.parallel_for(
+            nd_range<2>(range<2>(M, N), range<2>(TILE_SIZE, TILE_SIZE)),
+            [=](nd_item<2> item) {
+                size_t row = item.get_global_id(0);
+                size_t col = item.get_global_id(1);
+                size_t local_row = item.get_local_id(0);
+                size_t local_col = item.get_local_id(1);
+                
+                float sum = 0.0f;
+                
+                // Tile the computation
+                for (size_t t = 0; t < K; t += TILE_SIZE) {
+                    // Load tiles into local memory
+                    if (row < M && (t + local_col) < K)
+                        tile_a[local_row][local_col] = acc_a[row][t + local_col];
+                    else
+                        tile_a[local_row][local_col] = 0.0f;
+                    
+                    if ((t + local_row) < K && col < N)
+                        tile_b[local_row][local_col] = acc_b[t + local_row][col];
+                    else
+                        tile_b[local_row][local_col] = 0.0f;
+                    
+                    item.barrier(access::fence_space::local_space);
+                    
+                    // Compute partial sum using tiles
+                    for (size_t k = 0; k < TILE_SIZE; k++) {
+                        sum += tile_a[local_row][k] * tile_b[k][local_col];
+                    }
+                    
+                    item.barrier(access::fence_space::local_space);
+                }
+                
+                if (row < M && col < N)
+                    acc_c[row][col] = sum;
+            }
+        );
+    });
+}
+
+double benchmark(const std::string& name, 
+                 std::function<void()> func, 
+                 int iterations = 3) {
+    std::vector<double> times;
+    
+    for (int i = 0; i < iterations; i++) {
+        auto start = std::chrono::high_resolution_clock::now();
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        
+        double elapsed = std::chrono::duration<double, std::milli>(end - start).count();
+        times.push_back(elapsed);
+    }
+    
+    // Return average time
+    double sum = 0.0;
+    for (auto t : times) sum += t;
+    return sum / iterations;
+}
+
+int main(int argc, char* argv[]) {
+    const size_t M = 1024;
+    const size_t N = 1024;
+    const size_t K = 1024;
+    
+    std::vector<float> A(M * K, 1.0f);
+    std::vector<float> B(K * N, 2.0f);
+    std::vector<float> C1(M * N, 0.0f);
+    std::vector<float> C2(M * N, 0.0f);
+    
+    try {
+        queue q{gpu_selector_v};
+        std::cout << "Running on: " 
+                  << q.get_device().get_info<info::device::name>() 
+                  << "\n" << std::endl;
+        
+        // Benchmark v1 (unoptimized)
+        std::cout << "🐌 Version 1: Unoptimized (baseline)" << std::endl;
+        double time_v1 = benchmark("v1", [&]() {
+            matrixMultiply_v1(q, A.data(), B.data(), C1.data(), M, N, K);
+            q.wait();
+        });
+        std::cout << "   Time: " << time_v1 << " ms\n" << std::endl;
+        
+        // Benchmark v2 (optimized)
+        std::cout << "🚀 Version 2: Optimized (work-groups + local memory)" << std::endl;
+        double time_v2 = benchmark("v2", [&]() {
+            matrixMultiply_v2(q, A.data(), B.data(), C2.data(), M, N, K);
+            q.wait();
+        });
+        std::cout << "   Time: " << time_v2 << " ms\n" << std::endl;
+        
+        // Calculate speedup
+        double speedup = time_v1 / time_v2;
+        std::cout << "📊 Results:" << std::endl;
+        std::cout << "   Speedup: " << speedup << "x" << std::endl;
+        std::cout << "   Performance gain: " 
+                  << ((speedup - 1.0) * 100.0) << "%\n" << std::endl;
+        
+        // Verify correctness
+        bool correct = true;
+        for (size_t i = 0; i < M * N; i++) {
+            if (std::abs(C1[i] - C2[i]) > 0.01f) {
+                correct = false;
+                break;
+            }
+        }
+        
+        if (correct) {
+            std::cout << "✅ Results verified: Both versions produce same output" << std::endl;
+        } else {
+            std::cout << "❌ ERROR: Results differ!" << std::endl;
+        }
+        
+        std::cout << "\n" << std::endl;
+        std::cout << "🔍 PROFILING EXERCISE:" << std::endl;
+        std::cout << "   1. Tools → DPC++ → Profile with VTune (Premium)" << std::endl;
+        std::cout << "   2. Select 'GPU Hotspots'" << std::endl;
+        std::cout << "   3. Compare v1 vs v2 performance metrics" << std::endl;
+        std::cout << "   4. Analyze memory bandwidth utilization" << std::endl;
+        
+    } catch (exception const& e) {
+        std::cout << "SYCL exception: " << e.what() << std::endl;
+        return 1;
+    }
+    
+    return 0;
+}
