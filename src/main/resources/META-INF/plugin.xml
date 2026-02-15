@@ -6,39 +6,35 @@
     <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
 
     <description><![CDATA[
-    <h2>Intel DPC++ (Data Parallel C++) Support for JetBrains IDEs</h2>
-    
-    <p>Brings comprehensive Intel oneAPI DPC++/SYCL development capabilities to all JetBrains IDEs with C/C++ support.</p>
-    
-    <h3>Features (Free)</h3>
-    <ul>
-      <li><b>Syntax Highlighting</b> - SYCL keywords, parallel constructs, device selectors</li>
-      <li><b>File Type Support</b> - .dpcpp, .dp.cpp file recognition</li>
-      <li><b>CMake Integration</b> - oneAPI compiler detection and configuration</li>
-      <li><b>Project Templates</b> - Quick-start DPC++ project creation</li>
-      <li><b>Code Completion</b> - SYCL API autocomplete (sycl::queue, sycl::buffer, etc.)</li>
-      <li><b>Basic Navigation</b> - Go to definition, find usages for DPC++ constructs</li>
-    </ul>
-    
-    <h3>Premium Features</h3>
-    <ul>
-      <li><b>GPU Debugging</b> - gdb-oneapi integration with GPU thread visualization and memory inspection</li>
-      <li><b>Performance Profiling</b> - Intel VTune Profiler integration (GPU hotspots, offload analysis)</li>
-      <li><b>Device Explorer</b> - Real-time device monitoring and capability inspection</li>
-      <li><b>Code Analysis</b> - Advanced SYCL performance inspections and optimization hints</li>
-      <li><b>Kernel Analysis</b> - Occupancy prediction, memory bandwidth estimation</li>
-    </ul>
-    
-    <h3>Requirements</h3>
-    <ul>
-      <li>Intel oneAPI Base Toolkit 2024.0+ (with DPC++ compiler)</li>
-      <li>JetBrains IDE 2023.2+ (IntelliJ IDEA, CLion, PyCharm, WebStorm, etc.)</li>
-      <li>CMake 3.20+ (for CLion integration)</li>
-    </ul>
-    
-    <p><b>Open Source:</b> Apache 2.0 License - <a href="https://github.com/jakubjirak/dpcpp-clion-plugin">GitHub Repository</a></p>
-    <p><b>Support:</b> <a href="https://github.com/jakubjirak/dpcpp-clion-plugin/issues">Report Issues</a> | <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/overview.html">DPC++ Training</a></p>
-    ]]></description>
+<h2>Intel DPC++ Support</h2>
+<p>
+  Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support brings comprehensive
+  SYCL 2020 and DPC++ development features to your JetBrains IDE — from intelligent code completion to
+  GPU debugging and VTune profiling integration.
+</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><b>SYCL 2020 Support</b> — Full syntax highlighting and completion for SYCL APIs</li>
+  <li><b>DPC++ File Type</b> — Dedicated file type with correct compiler configuration</li>
+  <li><b>CMake Toolchain Detection</b> — Auto-detects oneAPI toolkit and configures build system</li>
+  <li><b>Project Templates</b> — Quick-start templates for common DPC++ project patterns</li>
+  <li><b>Code Completion</b> — Context-aware completion for SYCL buffers, accessors, queues, and kernels</li>
+  <li><b>Device Explorer</b> — Browse available compute devices (CPU, GPU, FPGA) in your system</li>
+</ul>
+
+<h2>Why Intel DPC++ Support?</h2>
+<p>
+  Heterogeneous computing is the future of performance. This plugin eliminates the friction of DPC++
+  development by bringing oneAPI toolchain integration directly into your IDE workflow.
+</p>
+
+<h2>Free vs Pro</h2>
+<ul>
+  <li><b>Free:</b> Syntax highlighting, basic completion, project templates, CMake detection</li>
+  <li><b>Pro:</b> GPU debugging (gdb-oneapi), VTune Profiler integration, device explorer, kernel occupancy analysis, performance advisor, and FPGA optimization hints</li>
+</ul>
+]]></description>
 
     <change-notes><![CDATA[
     <h3>0.1.x - Initial Public Beta</h3>
