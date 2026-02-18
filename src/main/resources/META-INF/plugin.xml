@@ -1,50 +1,93 @@
 <idea-plugin>
     <id>com.jakubjirak.dpcpp</id>
     <name>Intel DPC++ Support</name>
-    <vendor email="jakub.jirak@pm.me" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
+    <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
     
     <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
 
     <description><![CDATA[
-<h2>Intel DPC++ Support</h2>
+<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
+
 <p>
-  Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support brings comprehensive
-  SYCL 2020 and DPC++ development features to your JetBrains IDE — from intelligent code completion to
-  GPU debugging and VTune profiling integration.
+Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support brings comprehensive SYCL 2020 development features to CLion — from intelligent code completion to GPU debugging and VTune profiling integration.
 </p>
 
-<h2>Key Features</h2>
+<h3>Language Support</h3>
 <ul>
-  <li><b>SYCL 2020 Support</b> — Full syntax highlighting and completion for SYCL APIs</li>
-  <li><b>DPC++ File Type</b> — Dedicated file type with correct compiler configuration</li>
-  <li><b>CMake Toolchain Detection</b> — Auto-detects oneAPI toolkit and configures build system</li>
-  <li><b>Project Templates</b> — Quick-start templates for common DPC++ project patterns</li>
-  <li><b>Code Completion</b> — Context-aware completion for SYCL buffers, accessors, queues, and kernels</li>
-  <li><b>Device Explorer</b> — Browse available compute devices (CPU, GPU, FPGA) in your system</li>
+  <li>Full SYCL 2020 syntax highlighting with keyword and type recognition</li>
+  <li>Dedicated file types: .dpcpp and .dp.cpp</li>
+  <li>Context-aware code completion for sycl::queue, sycl::buffer, accessors, and kernels</li>
+  <li>Documentation on hover for SYCL APIs</li>
+  <li>Semantic highlighting with DPC++ annotator</li>
 </ul>
 
-<h2>Why Intel DPC++ Support?</h2>
-<p>
-  Heterogeneous computing is the future of performance. This plugin eliminates the friction of DPC++
-  development by bringing oneAPI toolchain integration directly into your IDE workflow.
-</p>
-
-<h2>Free vs Pro</h2>
+<h3>Toolchain and Build</h3>
 <ul>
-  <li><b>Free:</b> Syntax highlighting, basic completion, project templates, CMake detection</li>
-  <li><b>Pro:</b> GPU debugging (gdb-oneapi), VTune Profiler integration, device explorer, kernel occupancy analysis, performance advisor, and FPGA optimization hints</li>
+  <li>Automatic Intel oneAPI toolchain detection</li>
+  <li>CMake integration with DPC++ compiler configuration</li>
+  <li>Project templates for quick-start DPC++ development</li>
+  <li>Six live templates: syclqueue, syclbuffer, syclsubmit, syclparallel, syclaccess, syclusm</li>
 </ul>
-]]></description>
+
+<h3>Debugging and Profiling (Premium)</h3>
+<ul>
+  <li>gdb-oneapi integration for GPU kernel debugging</li>
+  <li>GPU thread visualization and kernel stepping</li>
+  <li>Intel VTune Profiler integration (GPU hotspots, offload, memory analysis)</li>
+  <li>Intel Advisor roofline analysis and offload modeling</li>
+  <li>Kernel occupancy calculator and bandwidth estimator</li>
+</ul>
+
+<h3>Advanced Features (Premium)</h3>
+<ul>
+  <li>Device Explorer tool window for browsing CPU, GPU, and FPGA devices</li>
+  <li>SYCL code quality and performance inspections</li>
+  <li>FPGA optimization analyzer with resource estimation</li>
+  <li>Multi-device orchestrator for workload distribution</li>
+  <li>AI-powered optimization suggestions</li>
+  <li>Live kernel editing with hot-reload</li>
+  <li>Intel DevCloud integration for cloud compilation on 7 device types</li>
+</ul>
+
+<h3>Pricing</h3>
+<ul>
+  <li><b>Free (Open Source):</b> Syntax highlighting, code completion, live templates, CMake integration, project templates</li>
+  <li><b>Professional:</b> GPU debugging, VTune profiling, device explorer, kernel analysis, FPGA optimization, AI assistant</li>
+  <li><b>Enterprise:</b> LSP integration, team collaboration, SSO, CI/CD integration, admin dashboard</li>
+  <li><i>Academic/Non-profit: 50% discount</i></li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>CLion 2023.2 or later</li>
+  <li>Intel oneAPI Base Toolkit 2024.0+</li>
+  <li>CMake 3.20+</li>
+  <li>Linux, Windows, or macOS</li>
+</ul>
+
+<h3>Support</h3>
+<ul>
+  <li>GitHub: <a href="https://github.com/JirakJ/intel-dpcpp-plugin">github.com/JirakJ/intel-dpcpp-plugin</a></li>
+  <li>Issues: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/issues">Report a Bug</a></li>
+  <li>Discussions: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/discussions">Ask a Question</a></li>
+  <li>Email: support@jakubjirak.com (Professional/Enterprise support)</li>
+</ul>
+    ]]></description>
 
     <change-notes><![CDATA[
-    <h3>0.1.x - Initial Public Beta</h3>
-    <ul>
-      <li>SYCL 2020 syntax highlighting</li>
-      <li>DPC++ file type recognition</li>
-      <li>oneAPI CMake toolchain detection</li>
-      <li>Basic code completion for SYCL APIs</li>
-      <li>Project templates for common DPC++ patterns</li>
-    </ul>
+        <h3>What's New</h3>
+        <ul>
+            <li><b>SYCL 2020 Syntax Highlighting</b> - Full keyword support for parallel constructs, device selectors, and SYCL APIs</li>
+            <li><b>DPC++ Code Completion</b> - Context-aware autocomplete for sycl::queue, sycl::buffer, accessors, and kernels</li>
+            <li><b>oneAPI Toolchain Detection</b> - Automatic CMake configuration for the Intel DPC++ compiler</li>
+            <li><b>Live Templates</b> - Quick code snippets for common DPC++ patterns like syclqueue, syclsubmit, and syclparallel</li>
+            <li><b>GPU Debugging</b> - gdb-oneapi integration with GPU thread visualization and kernel stepping</li>
+            <li><b>VTune Profiler Integration</b> - GPU hotspots, offload analysis, and memory bandwidth profiling</li>
+            <li><b>Device Explorer</b> - Browse available compute devices (CPU, GPU, FPGA) in a dedicated tool window</li>
+            <li><b>FPGA Optimization</b> - Resource estimation, pragma suggestions, and pipeline analysis for FPGA targets</li>
+            <li><b>AI Optimization Assistant</b> - Pattern-based suggestions for kernel performance improvements</li>
+            <li><b>Intel DevCloud Integration</b> - Cloud compilation and testing on 7 device types including GPU Max and Arc</li>
+        </ul>
     ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
