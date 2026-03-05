@@ -5,8 +5,7 @@
     
     <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
 
-    <description><![CDATA[
-<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
+    <description><![CDATA[<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
 
 <p>
 Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support brings comprehensive SYCL 2020 development features to CLion — from intelligent code completion to GPU debugging and VTune profiling integration.
@@ -29,7 +28,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
   <li>Six live templates: syclqueue, syclbuffer, syclsubmit, syclparallel, syclaccess, syclusm</li>
 </ul>
 
-<h3>Debugging and Profiling (Premium)</h3>
+<h3>Debugging and Profiling</h3>
 <ul>
   <li>gdb-oneapi integration for GPU kernel debugging</li>
   <li>GPU thread visualization and kernel stepping</li>
@@ -38,7 +37,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
   <li>Kernel occupancy calculator and bandwidth estimator</li>
 </ul>
 
-<h3>Advanced Features (Premium)</h3>
+<h3>Advanced Features</h3>
 <ul>
   <li>Device Explorer tool window for browsing CPU, GPU, and FPGA devices</li>
   <li>SYCL code quality and performance inspections</li>
@@ -47,14 +46,6 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
   <li>AI-powered optimization suggestions</li>
   <li>Live kernel editing with hot-reload</li>
   <li>Intel DevCloud integration for cloud compilation on 7 device types</li>
-</ul>
-
-<h3>Pricing</h3>
-<ul>
-  <li><b>Free (Open Source):</b> Syntax highlighting, code completion, live templates, CMake integration, project templates</li>
-  <li><b>Professional:</b> GPU debugging, VTune profiling, device explorer, kernel analysis, FPGA optimization, AI assistant</li>
-  <li><b>Enterprise:</b> LSP integration, team collaboration, SSO, CI/CD integration, admin dashboard</li>
-  <li><i>Academic/Non-profit: 50% discount</i></li>
 </ul>
 
 <h3>Requirements</h3>
@@ -71,24 +62,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
   <li>Issues: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/issues">Report a Bug</a></li>
   <li>Discussions: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/discussions">Ask a Question</a></li>
   <li>Email: support@jakubjirak.com (Professional/Enterprise support)</li>
-</ul>
-    ]]></description>
-
-    <change-notes><![CDATA[
-        <h3>What's New</h3>
-        <ul>
-            <li><b>SYCL 2020 Syntax Highlighting</b> - Full keyword support for parallel constructs, device selectors, and SYCL APIs</li>
-            <li><b>DPC++ Code Completion</b> - Context-aware autocomplete for sycl::queue, sycl::buffer, accessors, and kernels</li>
-            <li><b>oneAPI Toolchain Detection</b> - Automatic CMake configuration for the Intel DPC++ compiler</li>
-            <li><b>Live Templates</b> - Quick code snippets for common DPC++ patterns like syclqueue, syclsubmit, and syclparallel</li>
-            <li><b>GPU Debugging</b> - gdb-oneapi integration with GPU thread visualization and kernel stepping</li>
-            <li><b>VTune Profiler Integration</b> - GPU hotspots, offload analysis, and memory bandwidth profiling</li>
-            <li><b>Device Explorer</b> - Browse available compute devices (CPU, GPU, FPGA) in a dedicated tool window</li>
-            <li><b>FPGA Optimization</b> - Resource estimation, pragma suggestions, and pipeline analysis for FPGA targets</li>
-            <li><b>AI Optimization Assistant</b> - Pattern-based suggestions for kernel performance improvements</li>
-            <li><b>Intel DevCloud Integration</b> - Cloud compilation and testing on 7 device types including GPU Max and Arc</li>
-        </ul>
-    ]]></change-notes>
+</ul>]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.cidr.lang</depends>
@@ -164,6 +138,9 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             anchor="right"
             icon="/icons/dpcpp.svg"
             factoryClass="com.jakubjirak.dpcpp.toolwindow.DeviceExplorerToolWindow"/>
+    
+        <notificationGroup id="Intel DPC++ Support Feedback" displayType="BALLOON"/>
+        <projectActivity implementation="com.jakubjirak.dpcpp.feedback.FeedbackNotifier"/>
     </extensions>
 
     <actions>
