@@ -8,7 +8,6 @@
 
 ## Features
 
-### Free (Open Source)
 - ✅ **SYCL 2020 Syntax Highlighting** - Keywords, parallel constructs, device selectors
 - ✅ **File Type Support** - `.dpcpp`, `.dp.cpp` file recognition  
 - ✅ **Code Completion** - SYCL API autocomplete (sycl::queue, sycl::buffer, etc.)
@@ -16,42 +15,17 @@
 - ✅ **CMake Integration** - oneAPI compiler detection
 - ✅ **Documentation on Hover** - Inline API documentation
 - ✅ **Project Templates** - Quick-start DPC++ project creation
-
-### Premium ([Professional Edition](docs/LICENSING.md))
-
-**v0.2-v0.3 Features**:
-- ⭐ **GPU Debugging** - gdb-oneapi integration with GPU thread visualization
-- ⭐ **Performance Profiling** - Intel VTune Profiler integration (4 analysis types)
-- ⭐ **Device Explorer** - Real-time device monitoring tool window
-- ⭐ **Advanced Code Analysis** - SYCL quality and performance inspections
-- ⭐ **Kernel Analysis** - Occupancy calculator & bandwidth estimator
-- ⭐ **Intel Advisor** - Roofline analysis and offload modeling
-- ⭐ **SYCL Refactorings** - Buffer→USM, Extract Kernel, Optimize Work-Groups
-
-**v0.4 Features**:
-- 🔌 **FPGA Optimization** - Resource estimation, pragma suggestions, pipeline analysis
-- 🖥️ **Multi-Device Orchestrator** - Intelligent workload distribution across devices
-- ⚡ **Auto-Tuning** - Empirical work-group size optimization
-
-**v0.5 Features**:
-- 🤖 **AI Optimization** - Pattern-based suggestions with 70-90% confidence
-- 🔄 **Live Editing** - Hot-reload kernels in ~100ms without restart
-- ☁️ **DevCloud** - Cloud compilation on 7 device types (GPU Max, Arc, FPGA)
-- 📊 **Dashboard** - Real-time performance visualization & insights
-
-**v1.0 Features (NEW!)**:
-- 🌐 **Language Server** - LSP integration with clangd for advanced semantic analysis
-- 👥 **Team Collaboration** - Shared performance baselines, regression tracking
-- 🏢 **Enterprise** - SSO, license management, admin dashboard
-- 🔄 **CI/CD** - Automated performance testing in pipelines
-
-📖 **[View All Premium Features →](docs/ALL_PREMIUM_FEATURES.md)**  
-📖 **[View v0.2-v0.3 Features →](docs/PREMIUM_FEATURES.md)**  
-📖 **[View v0.4 Features →](docs/V04_FEATURES.md)**  
-📖 **[View v0.5 Features →](docs/V05_FEATURES.md)**  
-📖 **[View v1.0 Features →](docs/V10_FEATURES.md)**  
-💼 **[View Licensing & Pricing →](docs/LICENSING.md)**  
-🎓 **Academic/Non-profit: 50% discount**
+- ✅ **GPU Debugging** - gdb-oneapi integration with GPU thread visualization
+- ✅ **Performance Profiling** - Intel VTune Profiler integration
+- ✅ **Device Explorer** - Real-time device monitoring tool window
+- ✅ **Advanced Code Analysis** - SYCL quality and performance inspections
+- ✅ **Kernel Analysis** - Occupancy calculator & bandwidth estimator
+- ✅ **Intel Advisor** - Roofline analysis and offload modeling
+- ✅ **FPGA Optimization** - Resource estimation, pragma suggestions, pipeline analysis
+- ✅ **Multi-Device Orchestrator** - Intelligent workload distribution across devices
+- ✅ **AI Optimization** - Pattern-based suggestions
+- ✅ **Live Editing** - Hot-reload kernels without restart
+- ✅ **Performance Dashboard** - Real-time performance visualization & insights
 
 ## Requirements
 
@@ -158,11 +132,11 @@ IntelliSense for SYCL APIs:
 - Type `.submit` → Auto-complete queue operations
 - Type `parallel_for` → Get parameter hints
 
-## GPU Debugging (Premium)
+## GPU Debugging
 
 With Professional Edition, debug SYCL kernels directly in CLion:
 
-**Tools → DPC++ → Debug with gdb-oneapi (Premium)**
+**Tools → DPC++ → Debug with gdb-oneapi**
 
 Features:
 - Set breakpoints in kernels
@@ -183,11 +157,11 @@ gdb-oneapi ./build/main
 (gdb) thread 2:4            # Switch to thread 2, SIMD lane 4
 ```
 
-## Performance Profiling (Premium)
+## Performance Profiling
 
 Optimize with Intel VTune Profiler integration:
 
-**Tools → DPC++ → Profile with VTune (Premium)**
+**Tools → DPC++ → Profile with VTune**
 
 Analysis types:
 - GPU Hotspots - Find performance bottlenecks
@@ -200,7 +174,6 @@ Analysis types:
 
 ### Plugin Documentation
 - 📖 [Premium Features Guide](docs/PREMIUM_FEATURES.md)
-- 💼 [Licensing & Pricing](docs/LICENSING.md)
 - 🏗️ [Architecture](docs/ARCHITECTURE.md)
 - 🤝 [Contributing Guide](CONTRIBUTING.md)
 
@@ -212,7 +185,7 @@ Analysis types:
 ### Support
 - [GitHub Issues](https://github.com/jakubjirak/dpcpp-clion-plugin/issues) - Bug reports
 - [GitHub Discussions](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions) - Questions
-- Email: jakub.jirak@pm.me (Professional/Enterprise support)
+- Email: jakub.jirak@pm.me
 
 ## Contributing
 
