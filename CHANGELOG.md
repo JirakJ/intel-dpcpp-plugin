@@ -16,7 +16,7 @@ All notable changes to the Intel DPC++ CLion Plugin will be documented in this f
 - Basic annotator for semantic highlighting of SYCL constructs
 - Color settings page for customizing DPC++ syntax colors
 
-### Added - Premium Features
+### Added - Advanced Features
 - **GPU Debugging** - gdb-oneapi debugger integration with GPU thread visualization
 - **Performance Profiling** - Intel VTune Profiler integration (GPU hotspots, offload analysis)
 - **GPU Memory Inspector** - Real-time memory allocation tracking and leak detection
@@ -37,7 +37,6 @@ All notable changes to the Intel DPC++ CLion Plugin will be documented in this f
 
 ### Technical
 - Plugin successfully published to JetBrains Marketplace
-- Product descriptor code: PINTELDPCSUPPOR
 - Release date: 20251116
 - Built with IntelliJ Platform SDK 2023.2.5
 - Supports CLion 2023.2+

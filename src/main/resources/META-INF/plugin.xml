@@ -3,8 +3,6 @@
     <name>Intel DPC++ Support</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
     
-    <product-descriptor code="PINTELDPCSUPPOR" release-date="20251116" release-version="20251" optional="true"/>
-
     <description><![CDATA[<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
 
 <p>
@@ -114,7 +112,6 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             id="DPC++ Notifications" 
             displayType="BALLOON"/>
         
-        <!-- Premium Features -->
         <!-- Code Inspections -->
         <localInspection 
             language="C++"
@@ -180,13 +177,13 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             <!-- Premium Actions -->
             <action id="DpcppDebugGdbOneApi"
                     class="com.jakubjirak.dpcpp.actions.DebugWithGdbOneApiAction"
-                    text="Debug with gdb-oneapi (Premium)"
+                    text="Debug with gdb-oneapi"
                     description="GPU debugging with Intel oneAPI debugger"
                     icon="AllIcons.Actions.StartDebugger"/>
             
             <action id="DpcppProfileVTune"
                     class="com.jakubjirak.dpcpp.actions.ProfileWithVTuneAction"
-                    text="Profile with VTune (Premium)"
+                    text="Profile with VTune"
                     description="Performance analysis with Intel VTune Profiler"
                     icon="AllIcons.Actions.Profile"/>
             
@@ -195,61 +192,61 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             <!-- Advanced Analysis -->
             <action id="DpcppKernelOccupancy"
                     class="com.jakubjirak.dpcpp.actions.AnalyzeKernelOccupancyAction"
-                    text="Kernel Occupancy Calculator (Premium)"
+                    text="Kernel Occupancy Calculator"
                     description="Estimate GPU occupancy and identify limiting factors"
                     icon="AllIcons.General.Calculator"/>
             
             <action id="DpcppAdvisorRoofline"
                     class="com.jakubjirak.dpcpp.actions.AdvisorRooflineAction"
-                    text="Intel Advisor Analysis (Premium)"
+                    text="Intel Advisor Analysis"
                     description="Roofline analysis and optimization recommendations"
                     icon="AllIcons.Actions.ProfileCPU"/>
             
             <separator/>
             
-            <!-- Advanced Premium Features (v0.4) -->
+            <!-- Advanced Features -->
             <action id="DpcppFpgaOptimization"
                     class="com.jakubjirak.dpcpp.actions.FpgaOptimizationAction"
-                    text="FPGA Optimization Analyzer (Premium)"
+                    text="FPGA Optimization Analyzer"
                     description="FPGA-specific optimization and resource estimation"
                     icon="AllIcons.Nodes.ModuleGroup"/>
             
             <action id="DpcppMultiDevice"
                     class="com.jakubjirak.dpcpp.actions.MultiDeviceAction"
-                    text="Multi-Device Orchestrator (Premium)"
+                    text="Multi-Device Orchestrator"
                     description="Workload distribution across multiple devices"
                     icon="AllIcons.Actions.MatchCase"/>
             
             <action id="DpcppAutoTune"
                     class="com.jakubjirak.dpcpp.actions.AutoTuneAction"
-                    text="Auto-Tune Parameters (Premium)"
+                    text="Auto-Tune Parameters"
                     description="Automatic work-group size optimization"
                     icon="AllIcons.Actions.Lightning"/>
             
             <separator/>
             
-            <!-- Advanced Premium Features (v0.5) -->
+            <!-- Advanced Features -->
             <action id="DpcppAiOptimization"
                     class="com.jakubjirak.dpcpp.actions.AiOptimizationAction"
-                    text="AI Optimization Assistant (Premium)"
+                    text="AI Optimization Assistant"
                     description="AI-powered optimization suggestions"
                     icon="AllIcons.Actions.IntentionBulb"/>
             
             <action id="DpcppLiveEdit"
                     class="com.jakubjirak.dpcpp.actions.LiveEditAction"
-                    text="Live Kernel Editor (Premium)"
+                    text="Live Kernel Editor"
                     description="Hot-reload kernels without restart"
                     icon="AllIcons.Actions.RefactoringBulb"/>
             
             <action id="DpcppDevCloud"
                     class="com.jakubjirak.dpcpp.actions.DevCloudAction"
-                    text="Intel DevCloud (Premium)"
+                    text="Intel DevCloud"
                     description="Cloud compilation and testing"
                     icon="AllIcons.Ide.Remote"/>
             
             <action id="DpcppDashboard"
                     class="com.jakubjirak.dpcpp.actions.DashboardAction"
-                    text="Performance Dashboard (Premium)"
+                    text="Performance Dashboard"
                     description="Visualize performance metrics"
                     icon="AllIcons.Actions.Show"/>
         </group>
