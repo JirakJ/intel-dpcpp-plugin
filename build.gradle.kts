@@ -1,7 +1,3 @@
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Properties
-
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.24"
@@ -10,23 +6,7 @@ plugins {
 
 group = "com.jakubjirak.dpcpp"
 
-val versionPropsFile = file("version.properties")
-val versionProps = Properties().apply {
-    if (versionPropsFile.exists()) {
-        versionPropsFile.inputStream().use { load(it) }
-    }
-}
-
-val major = versionProps.getProperty("major", "0").toInt()
-val minor = versionProps.getProperty("minor", "1").toInt()
-var patch = versionProps.getProperty("patch", "0").toInt()
-
-patch++
-
-versionProps.setProperty("patch", patch.toString())
-versionPropsFile.outputStream().use { versionProps.store(it, null) }
-
-version = "$major.$minor.$patch"
+version = project.findProperty("pluginVersion").toString()
 
 repositories {
     mavenCentral()
@@ -94,7 +74,7 @@ tasks {
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        token.set(System.getenv("PLUGIN_TOKEN"))
         channels.set(listOf(if (project.version.toString().contains("beta")) "beta" else "default"))
     }
 
