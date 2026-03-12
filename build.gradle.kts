@@ -68,7 +68,7 @@ tasks {
     }
 
     runPluginVerifier {
-        ideVersions.set(listOf("IC-2023.2.8", "IC-2024.3"))
+        ideVersions.set(listOf("CL-2024.3"))
     }
 
     signPlugin {
