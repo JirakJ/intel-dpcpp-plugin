@@ -67,6 +67,10 @@ tasks {
         dependsOn("updateReleaseVersion")
     }
 
+    runPluginVerifier {
+        ideVersions.set(listOf("CL-2023.2.5", "CL-2024.3", "CL-2025.1.3"))
+    }
+
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
         privateKey.set(System.getenv("PRIVATE_KEY"))
