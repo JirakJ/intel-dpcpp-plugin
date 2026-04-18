@@ -2,6 +2,8 @@
     <id>com.jakubjirak.dpcpp</id>
     <name>Intel DPC++ Support</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
+    <product-descriptor code="PINTELDPCPPPLUG" release-date="20260418" release-version="20263" optional="true"/>
+
     
     <description><![CDATA[<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
 
