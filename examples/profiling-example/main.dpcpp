@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
         
         std::cout << "\n" << std::endl;
         std::cout << "🔍 PROFILING EXERCISE:" << std::endl;
-        std::cout << "   1. Tools → DPC++ → Profile with VTune (Premium)" << std::endl;
+        std::cout << "   1. Tools → DPC++ → Profile with VTune" << std::endl;
         std::cout << "   2. Select 'GPU Hotspots'" << std::endl;
         std::cout << "   3. Compare v1 vs v2 performance metrics" << std::endl;
         std::cout << "   4. Analyze memory bandwidth utilization" << std::endl;

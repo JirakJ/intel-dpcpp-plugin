@@ -23,7 +23,7 @@ public class PerformanceInspection extends LocalInspectionTool {
     @Override
     public PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly) {
         return new PsiElementVisitor() {
-            // Premium performance analysis:
+            // Performance analysis:
             // - Detect unnecessary host-device synchronization
             // - Identify sub-optimal work-group sizes
             // - Check buffer access patterns

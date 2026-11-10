@@ -30,7 +30,7 @@ public class DebugWithGdbOneApiAction extends AnAction {
         Messages.showInfoMessage(
             project,
             "GPU Debugging with gdb-oneapi\n\n" +
-            "Premium debugging features:\n" +
+            "Debugging features:\n" +
             "• Set breakpoints in SYCL kernels\n" +
             "• Inspect GPU thread state\n" +
             "• View device memory\n" +

@@ -104,7 +104,6 @@ public class ExtractKernelRefactoring {
         message.append("  • Easier to test in isolation\n");
         message.append("  • Better for complex kernels\n");
         message.append("  • Improved readability\n\n");
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Extract Kernel Refactoring");
     }

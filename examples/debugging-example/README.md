@@ -1,6 +1,6 @@
 # GPU Debugging Example
 
-This example demonstrates GPU debugging capabilities of the Intel DPC++ CLion Plugin (Professional Edition).
+This example demonstrates GPU debugging capabilities of the Intel DPC++ CLion Plugin.
 
 ## Bug Description
 
@@ -18,7 +18,7 @@ acc_c[idx] = acc_a[idx] + acc_b[idx];
 ## Prerequisites
 
 - Intel oneAPI Base Toolkit 2024.0+
-- CLion with Intel DPC++ Plugin (Professional Edition)
+- CLion with Intel DPC++ Plugin
 - GPU with SYCL support
 
 ## Build & Run
@@ -57,8 +57,8 @@ Running on: Intel(R) Data Center GPU Max 1550
 2. Find line inside `parallel_for` lambda
 3. Click gutter to set breakpoint (red dot)
 
-### Step 3: Launch GPU Debugger (Premium)
-1. **Tools → DPC++ → Debug with gdb-oneapi (Premium)**
+### Step 3: Launch GPU Debugger
+1. **Tools → DPC++ → Debug with gdb-oneapi**
 2. Select `debugging-example` executable
 3. Click "Debug"
 
@@ -113,7 +113,7 @@ idx == 512
 
 Now only thread 512 stops.
 
-### GPU Memory Inspector (Premium)
+### GPU Memory Inspector
 **Tools → DPC++ → GPU Memory Inspector**
 
 View device memory allocation:
@@ -140,8 +140,6 @@ watch -l acc_c[512]  # Break when acc_c[512] changes
 
 - [VTune Profiling Example](../profiling-example)
 - [GPU Debugging Tutorial](../../docs/tutorials/gpu-debugging.md)
-- [Premium Features Guide](../../docs/PREMIUM_FEATURES.md)
 
 ---
 
-**Need Professional Edition?** [View Licensing & Pricing](../../docs/LICENSING.md)

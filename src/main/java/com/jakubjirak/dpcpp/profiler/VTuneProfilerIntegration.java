@@ -65,12 +65,11 @@ public class VTuneProfilerIntegration {
         Messages.showInfoMessage(
             project,
             String.format("Kernel Performance Analysis: %s\n\n" +
-                "Premium features:\n" +
+                "Features:\n" +
                 "• GPU utilization timeline\n" +
                 "• Memory bandwidth analysis\n" +
                 "• Occupancy metrics\n" +
-                "• Bottleneck identification\n\n" +
-                "Available in Professional Edition", kernelName),
+                "• Bottleneck identification", kernelName),
             "VTune Kernel Analysis"
         );
     }
@@ -79,12 +78,11 @@ public class VTuneProfilerIntegration {
         Messages.showInfoMessage(
             project,
             "Memory Performance Analysis\n\n" +
-            "Premium features:\n" +
+            "Features:\n" +
             "• Host-device transfer tracking\n" +
             "• USM allocation patterns\n" +
             "• Cache efficiency metrics\n" +
-            "• Memory bandwidth utilization\n\n" +
-            "Available in Professional Edition",
+            "• Memory bandwidth utilization",
             "VTune Memory Analysis"
         );
     }

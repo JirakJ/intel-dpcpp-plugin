@@ -15,7 +15,7 @@ public class GpuMemoryInspector extends DialogWrapper {
     public GpuMemoryInspector(Project project) {
         super(project);
         this.project = project;
-        setTitle("GPU Memory Inspector (Premium)");
+        setTitle("GPU Memory Inspector");
         init();
         loadMemoryInfo();
     }

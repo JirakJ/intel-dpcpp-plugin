@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 /**
- * Premium Feature: Advanced GPU debugging with gdb-oneapi integration
+ * Advanced GPU debugging with gdb-oneapi integration
  * Supports debugging SYCL kernels on Intel GPUs
  */
 public class AdvancedDebugger {

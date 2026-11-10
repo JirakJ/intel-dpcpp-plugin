@@ -123,7 +123,6 @@ public class OptimizeWorkGroupRefactoring {
         message.append(String.format("  • Estimated speedup: 1.5-3x\n\n"));
         message.append("Note: Actual speedup depends on memory access patterns\n");
         message.append("and computational intensity.\n\n");
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Optimize Work-Group Size");
     }

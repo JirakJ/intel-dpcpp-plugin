@@ -109,14 +109,6 @@ cmake --build build
 ./build/vector-add
 ```
 
-## 🤝 Intel Partnership
-
-If building plugin professionally:
-1. Deploy MVP (this codebase)
-2. Gather 100+ downloads
-3. Contact Intel Developer Relations
-4. Propose partnership: $50K-150K funding
-5. Position as filling CLion tooling gap
 
 ---
 

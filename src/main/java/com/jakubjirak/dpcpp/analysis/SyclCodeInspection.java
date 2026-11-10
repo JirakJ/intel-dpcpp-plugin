@@ -23,7 +23,7 @@ public class SyclCodeInspection extends LocalInspectionTool {
     @Override
     public PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly) {
         return new PsiElementVisitor() {
-            // Premium inspection capabilities
+            // Inspection capabilities
             // - Detect inefficient memory patterns
             // - Identify potential race conditions
             // - Check USM usage best practices

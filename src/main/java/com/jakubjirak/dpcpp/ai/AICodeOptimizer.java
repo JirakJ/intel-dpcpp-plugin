@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * Premium Feature: AI-powered code optimization for SYCL/DPC++ kernels
+ * AI-powered code optimization for SYCL/DPC++ kernels
  * Uses machine learning models to suggest optimizations
  */
 public class AICodeOptimizer {

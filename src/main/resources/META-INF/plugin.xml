@@ -2,7 +2,6 @@
     <id>com.jakubjirak.dpcpp</id>
     <name>Intel DPC++ Support</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
-    <product-descriptor code="PINTELDPCPPPLUG" release-date="20260418" release-version="20263" optional="true"/>
 
     
     <description><![CDATA[<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
@@ -61,7 +60,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
   <li>GitHub: <a href="https://github.com/JirakJ/intel-dpcpp-plugin">github.com/JirakJ/intel-dpcpp-plugin</a></li>
   <li>Issues: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/issues">Report a Bug</a></li>
   <li>Discussions: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/discussions">Ask a Question</a></li>
-  <li>Email: support@jakubjirak.com (Professional/Enterprise support)</li>
+  <li>Email: support@jakubjirak.com</li>
 </ul>]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -176,7 +175,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             
             <separator/>
             
-            <!-- Premium Actions -->
+            <!-- Advanced Actions -->
             <action id="DpcppDebugGdbOneApi"
                     class="com.jakubjirak.dpcpp.actions.DebugWithGdbOneApiAction"
                     text="Debug with gdb-oneapi"

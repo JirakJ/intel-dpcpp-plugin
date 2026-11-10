@@ -115,7 +115,6 @@ public class KernelOccupancyCalculator {
             message.append("  • ").append(suggestion).append("\n");
         }
         
-        message.append("\nAvailable in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Kernel Occupancy Calculator");
     }
