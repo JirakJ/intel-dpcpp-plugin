@@ -43,11 +43,10 @@ public class GdbOneApiDebuggerSupport {
     public static void showGpuThreads(@NotNull XDebugSession session) {
         Messages.showInfoMessage(
             session.getProject(),
-            "GPU Thread Inspector\n\nThis premium feature shows:\n" +
+            "GPU Thread Inspector\n\nThis feature shows:\n" +
             "• Active GPU threads\n" +
             "• Work-group hierarchy\n" +
-            "• Thread state (running/suspended)\n\n" +
-            "Available in Professional Edition",
+            "• Thread state (running/suspended)",
             "GPU Thread Inspector"
         );
     }
@@ -56,11 +55,10 @@ public class GdbOneApiDebuggerSupport {
         Messages.showInfoMessage(
             project,
             String.format("GPU Memory Inspector\n\nAddress: 0x%x\n\n" +
-                "Premium features:\n" +
+                "Features:\n" +
                 "• Device memory viewer\n" +
                 "• USM allocation tracking\n" +
-                "• Memory leak detection\n\n" +
-                "Available in Professional Edition", address),
+                "• Memory leak detection", address),
             "GPU Memory Inspector"
         );
     }

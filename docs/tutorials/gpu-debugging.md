@@ -7,7 +7,7 @@ This tutorial demonstrates GPU-level debugging of SYCL/DPC++ applications using 
 ## Prerequisites
 
 - Intel oneAPI Base Toolkit 2024.0+
-- CLion with Intel DPC++ plugin (Professional Edition)
+- CLion with Intel DPC++ plugin
 - Example project from `examples/debugging-example`
 
 ## Setup
@@ -90,7 +90,7 @@ In CLion:
 
 #### Step 2: Launch Debug Session
 
-1. **Tools → DPC++ → Debug with gdb-oneapi (Premium)**
+1. **Tools → DPC++ → Debug with gdb-oneapi**
 2. Select the executable in dialog
 3. Click "Debug"
 
@@ -110,7 +110,7 @@ When stopped at breakpoint:
   Thread 258 (GPU thread 0:7:255) at kernel.dpcpp:18
 ```
 
-**GPU Thread Inspector** (Premium):
+**GPU Thread Inspector**:
 - Click "Show GPU Threads" button
 - Visual hierarchy display
 
@@ -121,7 +121,7 @@ Select specific GPU thread and print variables to find the off-by-one bug.
 ## Advanced Techniques
 
 ### Debugging Race Conditions
-Use Thread Sanitizer (Premium) for automatic race detection.
+Use Thread Sanitizer for automatic race detection.
 
 ### Debugging Work-Group Local Memory
 View local memory allocation per work-group.

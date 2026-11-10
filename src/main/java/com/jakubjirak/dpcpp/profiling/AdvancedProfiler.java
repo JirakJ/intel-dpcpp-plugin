@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 /**
- * Premium Feature: Advanced performance profiling with VTune integration
+ * Advanced performance profiling with VTune integration
  * Provides deep insights into kernel performance
  */
 public class AdvancedProfiler {

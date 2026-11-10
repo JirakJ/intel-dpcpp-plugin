@@ -1,9 +1,11 @@
 # Intel DPC++ CLion Plugin
 
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE) ![Version](https://img.shields.io/badge/version-2026.8.0-green)
+
+> **Free & open source.** Since 2026.8.0 the plugin is completely free — every feature is unlocked for everyone, no license needed — and the source code is available under the Apache License 2.0.
+
 **Comprehensive Intel oneAPI DPC++/SYCL development support for JetBrains CLion IDE.**
 
-[![Version](https://img.shields.io/badge/version-0.1.x-blue.svg)](https://github.com/jakubjirak/dpcpp-clion-plugin)
-[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
 [![oneAPI](https://img.shields.io/badge/Intel-oneAPI-0071C5.svg)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html)
 
 ## Features
@@ -44,7 +46,7 @@
 5. Restart CLion
 
 ### Manual Installation
-1. Download the latest `.zip` from [Releases](https://github.com/jakubjirak/dpcpp-clion-plugin/releases)
+1. Download the latest `.zip` from [Releases](https://github.com/JirakJ/intel-dpcpp-plugin/releases)
 2. `Settings/Preferences` → `Plugins` → `⚙️` → `Install Plugin from Disk`
 3. Select the downloaded `.zip` file
 4. Restart CLion
@@ -134,7 +136,7 @@ IntelliSense for SYCL APIs:
 
 ## GPU Debugging
 
-With Professional Edition, debug SYCL kernels directly in CLion:
+Debug SYCL kernels directly in CLion:
 
 **Tools → DPC++ → Debug with gdb-oneapi**
 
@@ -173,7 +175,6 @@ Analysis types:
 ## Documentation
 
 ### Plugin Documentation
-- 📖 [Premium Features Guide](docs/PREMIUM_FEATURES.md)
 - 🏗️ [Architecture](docs/ARCHITECTURE.md)
 - 🤝 [Contributing Guide](CONTRIBUTING.md)
 
@@ -183,19 +184,9 @@ Analysis types:
 - [oneAPI Code Samples](https://github.com/oneapi-src/oneAPI-samples)
 
 ### Support
-- [GitHub Issues](https://github.com/jakubjirak/dpcpp-clion-plugin/issues) - Bug reports
-- [GitHub Discussions](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions) - Questions
+- [GitHub Issues](https://github.com/JirakJ/intel-dpcpp-plugin/issues) - Bug reports
+- [GitHub Discussions](https://github.com/JirakJ/intel-dpcpp-plugin/discussions) - Questions
 - Email: jakub.jirak@pm.me
-
-## Contributing
-
-Contributions welcome! This is an **Apache 2.0 open-source project**.
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
 
 ## Development
 
@@ -251,7 +242,6 @@ Contributions welcome! This is an **Apache 2.0 open-source project**.
 ### Phase 6 (v1.0.0 - Current) ✅
 - Language Server Protocol (LSP)
 - Team collaboration features
-- Enterprise license management
 - CI/CD integration
 - Advanced analytics
 
@@ -260,29 +250,12 @@ Contributions welcome! This is an **Apache 2.0 open-source project**.
 - More device support
 - Performance optimization suggestions
 - Team collaboration features
-- Enterprise support options
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/jakubjirak/dpcpp-clion-plugin/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions)
+- **Issues**: [GitHub Issues](https://github.com/JirakJ/intel-dpcpp-plugin/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/JirakJ/intel-dpcpp-plugin/discussions)
 - **Intel Forums**: [oneAPI Community](https://community.intel.com/t5/Intel-oneAPI-Toolkits/ct-p/oneapi)
-
-## License
-
-Copyright © 2025 Intel Corporation
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 
 ## Acknowledgments
 
@@ -294,4 +267,10 @@ limitations under the License.
 ---
 
 **Made with ❤️ for heterogeneous computing developers**
-# intel-dpcpp-plugin
+## Contributing
+
+Issues and pull requests are welcome at https://github.com/JirakJ/intel-dpcpp-plugin.
+
+## License
+
+Copyright 2026 Jakub Jirák. Licensed under the [Apache License, Version 2.0](LICENSE).

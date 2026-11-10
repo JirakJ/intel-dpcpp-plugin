@@ -1,8 +1,8 @@
-# Advanced Premium Features (v0.3+)
+# Advanced Features (v0.3+)
 
 ## Overview
 
-This guide covers advanced premium features added in version 0.3 of the Intel DPC++ CLion Plugin.
+This guide covers advanced features added in version 0.3 of the Intel DPC++ CLion Plugin.
 
 ---
 
@@ -22,7 +22,7 @@ Based on Intel GPU architecture limits, it calculates theoretical occupancy and 
 
 ### Usage
 
-**Tools → DPC++ → Kernel Occupancy Calculator (Premium)**
+**Tools → DPC++ → Kernel Occupancy Calculator**
 
 1. Enter work-group size (e.g., 256)
 2. Review occupancy analysis
@@ -263,7 +263,7 @@ advisor-gui .advisor
 
 ### Integration with Plugin
 
-**Tools → DPC++ → Intel Advisor Analysis (Premium)**
+**Tools → DPC++ → Intel Advisor Analysis**
 
 Select analysis type:
 1. Roofline Analysis
@@ -493,6 +493,4 @@ Run profiling again and compare:
 
 ---
 
-**Available in Professional Edition ($99/year)**
 
-[View Licensing & Pricing →](LICENSING.md)

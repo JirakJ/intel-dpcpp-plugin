@@ -135,7 +135,6 @@ public class MemoryBandwidthEstimator {
             message.append("  • ").append(rec).append("\n");
         }
         
-        message.append("\nAvailable in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Memory Bandwidth Estimator");
     }

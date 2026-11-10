@@ -7,7 +7,7 @@ Learn how to use Intel VTune Profiler integration to optimize SYCL/DPC++ applica
 ## Prerequisites
 
 - Intel VTune Profiler (oneAPI Base Toolkit)
-- CLion with Intel DPC++ plugin (Professional Edition)
+- CLion with Intel DPC++ plugin
 - Performance counters enabled
 
 ## Setup
@@ -35,7 +35,7 @@ source /opt/intel/oneapi/setvars.sh
 Identifies performance bottlenecks in kernels.
 
 **Usage in CLion**:
-1. **Tools → DPC++ → Profile with VTune (Premium)**
+1. **Tools → DPC++ → Profile with VTune**
 2. Select "GPU Hotspots"
 3. Configure executable
 4. Run analysis

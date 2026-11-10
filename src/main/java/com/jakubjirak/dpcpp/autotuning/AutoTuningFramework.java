@@ -138,7 +138,6 @@ public class AutoTuningFramework {
         double speedup = result.bestPerformance / baselinePerf;
         message.append(String.format("  vs baseline (128): %.2fx faster\n\n", speedup));
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Auto-Tuning Framework");
     }

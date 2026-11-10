@@ -153,7 +153,6 @@ public class FpgaOptimizationAnalyzer {
         message.append("  • Use fpga_simulator for quick testing\n");
         message.append("  • Profile with dynamic profiler\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "FPGA Optimization Analyzer");
     }

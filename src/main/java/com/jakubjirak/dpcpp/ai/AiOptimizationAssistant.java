@@ -158,7 +158,6 @@ public class AiOptimizationAssistant {
         
         message.append("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
         message.append("🤖 Powered by AI Pattern Recognition\n");
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "AI Optimization Assistant");
     }

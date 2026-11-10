@@ -98,7 +98,6 @@ public class AdvisorIntegration {
         message.append("  3. Apply targeted optimizations\n");
         message.append("  4. Re-measure and verify improvement\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Intel Advisor Roofline");
     }
@@ -128,7 +127,6 @@ public class AdvisorIntegration {
         message.append("  • Memory transfer optimization hints\n");
         message.append("  • Kernel fusion opportunities\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Intel Advisor Offload");
     }
@@ -158,7 +156,6 @@ public class AdvisorIntegration {
         message.append("  • Minimize false sharing\n");
         message.append("  • Optimize parallel regions\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Intel Advisor Threading");
     }

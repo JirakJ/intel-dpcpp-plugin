@@ -32,7 +32,7 @@ int main() {
                 
                 // DEBUGGING EXERCISE:
                 // 1. Set breakpoint on line below (inside lambda)
-                // 2. Run "Debug with gdb-oneapi (Premium)"
+                // 2. Run "Debug with gdb-oneapi"
                 // 3. Inspect GPU threads when breakpoint hits
                 // 4. Fix the off-by-one bug (idx + 1)
                 

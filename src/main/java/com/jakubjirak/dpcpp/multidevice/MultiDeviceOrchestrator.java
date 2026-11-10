@@ -147,7 +147,6 @@ public class MultiDeviceOrchestrator {
         message.append("}\n");
         message.append("```\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Multi-Device Orchestrator");
     }

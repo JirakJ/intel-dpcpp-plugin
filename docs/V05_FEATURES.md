@@ -1,4 +1,4 @@
-# Premium Features v0.5 - AI & Cloud Intelligence
+# Features v0.5 - AI & Cloud Intelligence
 
 ## Overview
 
@@ -35,7 +35,7 @@ Each suggestion includes a confidence score (70-90%) based on:
 
 ### Usage
 
-**Tools → DPC++ → AI Optimization Assistant (Premium)**
+**Tools → DPC++ → AI Optimization Assistant**
 
 ### Example Analysis
 
@@ -173,7 +173,6 @@ Found 5 optimization opportunities:
 📈 Expected Total Speedup: 3.2x - 6.8x
 
 🤖 Powered by AI Pattern Recognition
-Available in Professional Edition
 ```
 
 ### AI Pattern Detection
@@ -311,7 +310,7 @@ Edit code → Hot Reload (100ms) → Test immediately
 
 ### Usage
 
-**Tools → DPC++ → Live Kernel Editor (Premium)**
+**Tools → DPC++ → Live Kernel Editor**
 
 Or use keyboard shortcut: **Ctrl+Shift+R** (Reload Kernel)
 
@@ -364,7 +363,6 @@ q.parallel_for(range<1>(N), [=](id<1> i) {
   • No application restart needed
   • 10-100x faster than full rebuild
 
-Available in Professional Edition
 ```
 
 ### Technical Implementation
@@ -519,7 +517,7 @@ Access to Intel's cloud infrastructure with the latest hardware for compilation,
 
 ### Usage
 
-**Tools → DPC++ → Intel DevCloud (Premium)**
+**Tools → DPC++ → Intel DevCloud**
 
 ### Example Interface
 
@@ -577,7 +575,6 @@ Intel DevCloud Integration
   • Automatic cleanup after job
   • No data retention
 
-Available in Professional Edition
 ```
 
 ### Job Submission Workflow
@@ -732,7 +729,7 @@ Real-time visualization of SYCL application performance metrics with actionable 
 
 ### Usage
 
-**Tools → DPC++ → Performance Dashboard (Premium)**
+**Tools → DPC++ → Performance Dashboard**
 
 ### Example Dashboard
 
@@ -783,7 +780,6 @@ Total execution: 51.24 ms
   3. Consider kernel fusion for small kernels
   4. Profile with VTune for detailed analysis
 
-Available in Professional Edition
 ```
 
 ### Advanced Analytics
@@ -965,9 +961,7 @@ Total improvement: 2.3x over 4 weeks
 
 ---
 
-**Available in Professional Edition ($99/year)**
 
 **Monthly Value: $3,700-7,400**  
 **ROI: 37-75x**
 
-[View Licensing & Pricing →](LICENSING.md)

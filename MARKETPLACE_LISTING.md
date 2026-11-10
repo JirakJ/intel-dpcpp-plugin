@@ -54,62 +54,49 @@
 - Browse available compute devices (CPUs, GPUs, FPGAs)
 - Device details and capabilities at a glance
 
-#### 🐛 GPU Debugging (Professional)
+#### 🐛 GPU Debugging
 - **gdb-oneapi** integration for GPU kernel debugging
 - GPU thread visualization and inspector
 - Kernel breakpoints and conditional breakpoints
 - Device memory viewer
 
-#### 📊 Intel VTune Profiler Integration (Professional)
+#### 📊 Intel VTune Profiler Integration
 - 4 analysis types: GPU hotspots, GPU offload, kernel performance metrics, memory bandwidth
 - Real-time device monitoring tool window
 - Performance visualization within the IDE
 
-#### 🔍 Advanced Code Inspections (Professional)
+#### 🔍 Advanced Code Inspections
 - Race condition detection in SYCL kernels
 - USM best practice checks
 - Kernel occupancy analysis
 - Memory bandwidth predictor
 
-#### ♻️ SYCL Refactorings (Professional)
+#### ♻️ SYCL Refactorings
 - **Buffer → USM** migration assistant
 - **Extract Kernel** refactoring
 - **Optimize Work-Groups** transformation
 
-#### 🏭 FPGA Optimization (Professional)
+#### 🏭 FPGA Optimization
 - Resource estimation and pragma suggestions
 - Pipeline analysis for FPGA targets
 - Multi-device orchestrator with intelligent workload distribution
 
-#### 🤖 AI-Powered Optimization (Professional)
+#### 🤖 AI-Powered Optimization
 - Optimization suggestions with 70–90% confidence
 - Live kernel editor with hot-reload (~100ms)
 - Intel DevCloud integration (7 device types: GPU Max, Arc, FPGA, and more)
 
-#### 🏢 Enterprise
+#### 🤝 Team
 - Team collaboration with shared performance baselines
 - Regression tracking across builds
-- SSO, license management, and admin dashboard
 - CI/CD automation and performance testing
 
 ---
 
-### 💰 Pricing Model
+### 💰 Pricing
 
-| Tier              | Price          | Highlights                                                     |
-|-------------------|----------------|----------------------------------------------------------------|
-| **Community**     | Free           | SYCL highlighting, code completion, live templates, CMake integration, device explorer |
-| **Professional**  | $99/year       | GPU debugging, VTune profiling, code inspections, refactorings, FPGA optimization, AI assistant |
-| **Enterprise**    | $499/year      | Unlimited seats, team collaboration, regression tracking, SSO, CI/CD automation |
-
-**Volume Discounts (Professional):**
-- 5–9 licenses: 10% off → $89/year each
-- 10–24 licenses: 20% off → $79/year each
-- 25+ licenses: 30% off → $69/year each
-
-**Academic & Non-Profit:** 50% off Professional → $49/year per user
-
-**30-day free trial** available for Professional edition.
+The Intel DPC++ plugin is **completely free and open source** (Apache License 2.0).
+Every feature is available to everyone — no license or subscription needed.
 
 ---
 
@@ -206,14 +193,9 @@
 - [ ] Screenshots captured (minimum 5, 1280×800px recommended)
 - [ ] Plugin signed with JetBrains Marketplace certificate
 - [ ] Changelog written for initial release
-- [ ] Pricing tiers configured in JetBrains Marketplace (Community/Professional/Enterprise)
-- [ ] 30-day trial configured for Professional tier
-- [ ] Volume discounts configured
-- [ ] Academic discount configured
 - [ ] Vendor verified on JetBrains Marketplace
 - [ ] Compatibility tested with CLion 2023.2+
 - [ ] Intel oneAPI Base Toolkit compatibility verified
-- [ ] License agreements uploaded (Apache 2.0 for Community, commercial for Pro/Enterprise)
 - [ ] Support URL / email configured
 - [ ] README and documentation published
 - [ ] Landing page live at vendor website
