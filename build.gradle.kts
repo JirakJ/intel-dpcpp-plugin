@@ -38,37 +38,17 @@ tasks {
         untilBuild.set("")
         
         changeNotes.set("""
-            <h3>Intel DPC++ Support - Beta Release</h3>
+            <h3>2026.8.0</h3>
             <ul>
-              <li>SYCL 2020 syntax highlighting</li>
-              <li>Code completion for SYCL APIs</li>
-              <li>Live templates for common patterns</li>
-              <li>CMake integration with oneAPI detection</li>
-              <li>Documentation and samples browser</li>
+              <li>The plugin is now completely free — all features unlocked, no license needed.</li>
+              <li>Source code is now open source under Apache-2.0: https://github.com/JirakJ/intel-dpcpp-plugin</li>
             </ul>
         """.trimIndent())
     }
     
-    register("updateReleaseVersion") {
-        doFirst {
-            val versionParts = version.toString().split(".")
-            val releaseVersion = "${versionParts[0]}${versionParts[1]}"
-            val pluginXml = file("src/main/resources/META-INF/plugin.xml")
-            val content = pluginXml.readText()
-            val updatedContent = content.replace(
-                Regex("""release-version="\d+""""),
-                """release-version="$releaseVersion""""
-            )
-            pluginXml.writeText(updatedContent)
-        }
-    }
-    
-    named("patchPluginXml") {
-        dependsOn("updateReleaseVersion")
-    }
 
     runPluginVerifier {
-        ideVersions.set(listOf("CL-2024.3"))
+        ideVersions.set(listOf("CL-2024.3.6"))
     }
 
     signPlugin {

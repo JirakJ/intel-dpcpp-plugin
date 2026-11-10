@@ -27,7 +27,7 @@ public class DeviceExplorerToolWindow implements ToolWindowFactory {
             JTextArea infoArea = new JTextArea();
             infoArea.setEditable(false);
             infoArea.setText(
-                "DPC++ Device Explorer (Premium)\n\n" +
+                "DPC++ Device Explorer\n\n" +
                 "This tool window shows:\n" +
                 "• Available SYCL devices (CPU, GPU, FPGA)\n" +
                 "• Device capabilities and properties\n" +
@@ -37,26 +37,11 @@ public class DeviceExplorerToolWindow implements ToolWindowFactory {
                 "✓ Platform detection (Level Zero, OpenCL, CUDA)\n" +
                 "✓ Compute unit count and frequency\n" +
                 "✓ Memory hierarchy visualization\n" +
-                "✓ Device selection for debugging\n\n" +
-                "Available in Professional Edition\n"
+                "✓ Device selection for debugging\n"
             );
             
             JScrollPane scrollPane = new JScrollPane(infoArea);
             add(scrollPane, BorderLayout.CENTER);
-            
-            JButton refreshButton = new JButton("Refresh Devices");
-            refreshButton.addActionListener(e -> {
-                JOptionPane.showMessageDialog(
-                    this,
-                    "Device refresh requires Professional Edition",
-                    "Premium Feature",
-                    JOptionPane.INFORMATION_MESSAGE
-                );
-            });
-            
-            JPanel buttonPanel = new JPanel();
-            buttonPanel.add(refreshButton);
-            add(buttonPanel, BorderLayout.SOUTH);
         }
     }
 }

@@ -140,7 +140,6 @@ public class PerformanceDashboard {
         message.append("  3. Consider kernel fusion for small kernels\n");
         message.append("  4. Profile with VTune for detailed analysis\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Performance Dashboard");
     }

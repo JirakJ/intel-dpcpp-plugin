@@ -94,7 +94,6 @@ public class BufferToUsmRefactoring {
         message.append("  • Manual memory management required\n");
         message.append("  • Explicit synchronization needed\n");
         message.append("  • No automatic dependency tracking\n\n");
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Buffer to USM Refactoring");
     }

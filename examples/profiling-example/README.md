@@ -21,7 +21,7 @@ This example compares two matrix multiplication implementations:
 ## Prerequisites
 
 - Intel oneAPI Base Toolkit 2024.0+ with VTune Profiler
-- CLion with Intel DPC++ Plugin (Professional Edition)
+- CLion with Intel DPC++ Plugin
 - GPU with SYCL support
 
 ## Build & Run
@@ -57,10 +57,10 @@ Running on: Intel(R) Data Center GPU Max 1550
 
 ## Profiling Exercise
 
-### Method 1: CLion Integration (Premium)
+### Method 1: CLion Integration
 
 #### Step 1: Profile Version 1
-1. **Tools → DPC++ → Profile with VTune (Premium)**
+1. **Tools → DPC++ → Profile with VTune**
 2. Select "GPU Hotspots"
 3. Run analysis
 4. Wait for results
@@ -241,4 +241,3 @@ sudo sysctl -w kernel.perf_event_paranoid=0
 
 ---
 
-**Need Professional Edition?** [View Licensing & Pricing](../../docs/LICENSING.md)

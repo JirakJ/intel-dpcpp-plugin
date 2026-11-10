@@ -143,7 +143,6 @@ public class LiveKernelEditor {
         message.append("  • No application restart needed\n");
         message.append("  • 10-100x faster than full rebuild\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Live Kernel Editor");
     }

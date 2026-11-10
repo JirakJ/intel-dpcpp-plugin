@@ -132,7 +132,6 @@ public class DevCloudIntegration {
         message.append("  • Automatic cleanup after job\n");
         message.append("  • No data retention\n\n");
         
-        message.append("Available in Professional Edition");
         
         Messages.showInfoMessage(project, message.toString(), "Intel DevCloud");
     }

@@ -1,4 +1,4 @@
-# Premium Features v0.4 - Advanced Device Support
+# Features v0.4 - Advanced Device Support
 
 ## Overview
 
@@ -37,7 +37,7 @@ Automatically suggests Intel FPGA-specific pragmas:
 
 ### Usage
 
-**Tools → DPC++ → FPGA Optimization Analyzer (Premium)**
+**Tools → DPC++ → FPGA Optimization Analyzer**
 
 ### Example Analysis
 
@@ -174,7 +174,7 @@ Intelligent workload distribution across heterogeneous devices (CPUs, GPUs, FPGA
 
 ### Usage
 
-**Tools → DPC++ → Multi-Device Orchestrator (Premium)**
+**Tools → DPC++ → Multi-Device Orchestrator**
 
 ### Example Report
 
@@ -346,7 +346,7 @@ Automatically find optimal work-group sizes and tile dimensions through empirica
 
 ### Usage
 
-**Tools → DPC++ → Auto-Tune Parameters (Premium)**
+**Tools → DPC++ → Auto-Tune Parameters**
 
 ### Example Results
 
@@ -540,6 +540,4 @@ auto optimal_m = auto_tune_dim(M, [&](int tile) {
 
 ---
 
-**Available in Professional Edition ($99/year)**
 
-[View Licensing & Pricing →](LICENSING.md)
