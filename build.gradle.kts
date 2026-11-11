@@ -56,6 +56,14 @@ intellijPlatform {
         }
 
         changeNotes = """
+            <h3>2026.9.0</h3>
+            <ul>
+                <li>Completion, SYCL highlighting and quick documentation now attach to CLion's C/C++ language and actually activate.</li>
+                <li>C++ highlighting is no longer replaced by an empty lexer; SYCL highlighting colours only matched identifiers.</li>
+                <li>Kernel Occupancy Calculator uses a thread-slot / register / shared-local-memory estimate.</li>
+                <li>VTune, Advisor and gdb-oneapi actions find oneAPI and copy a ready-to-run command.</li>
+                <li>Removed actions and panels that showed simulated or hard-coded results.</li>
+            </ul>
             <h3>2026.8.0</h3>
             <ul>
               <li>The plugin is now completely free — all features unlocked, no license needed.</li>
