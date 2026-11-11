@@ -9,7 +9,15 @@ public class DpcppDocumentationProvider extends AbstractDocumentationProvider {
     @Nullable
     @Override
     public String generateDoc(PsiElement element, @Nullable PsiElement originalElement) {
-        String text = element.getText();
+        return element == null ? null : docFor(element.getText());
+    }
+
+    /** Documentation for SYCL constructs mentioned in {@code text}, or {@code null}. */
+    @Nullable
+    static String docFor(@Nullable String text) {
+        if (text == null) {
+            return null;
+        }
         
         if (text.contains("sycl::queue")) {
             return "<b>sycl::queue</b><br/>" +

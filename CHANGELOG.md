@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+- Completion, SYCL highlighting and quick documentation were registered for a language id CLion does not use (`C++`), so they never activated; they now attach to CLion's C/C++ language.
+- The DPC++ syntax highlighter replaced CLion's C++ lexer with an empty one; it has been removed so C++ highlighting is untouched.
+- SYCL highlighting no longer colours whole statements or files — only the matched identifiers.
+- The file-type registration name now matches the file type (`DPC++`).
+- Kernel Occupancy Calculator: replaced a model that reported register pressure for almost any input with a thread-slot / register / shared-local-memory estimate, and it now asks for registers and local memory instead of assuming them.
+- VTune, Advisor and gdb-oneapi actions now look in `$ONEAPI_ROOT` and the default install locations and give a ready-to-run command (copied to the clipboard).
+
+### Removed
+- Actions and panels that showed simulated or hard-coded results rather than analysing your code: Auto-Tune, Live Kernel Editor, Intel DevCloud, Performance Dashboard, Multi-Device Orchestrator, AI Optimization Assistant, FPGA Optimization Analyzer, the Device Explorer tool window and the "coming soon" Run-menu debugger entry.
+- Two inspections that never reported anything, and unused internal classes.
+- Documentation describing features that did not exist.
+
 ## [2026.8.0] - 2026-11-10
 
 ### Changed

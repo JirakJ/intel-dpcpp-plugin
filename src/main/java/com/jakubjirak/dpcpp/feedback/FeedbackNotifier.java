@@ -20,27 +20,36 @@ import org.jetbrains.annotations.Nullable;
  * Non-intrusive feedback prompt shown once after 7 days of plugin usage.
  */
 public class FeedbackNotifier implements ProjectActivity {
+
+    /** Must match the {@code notificationGroup} id registered in plugin.xml. */
+    public static final String NOTIFICATION_GROUP_ID = "Intel DPC++ Support Feedback";
+    static final long DAYS_BEFORE_PROMPT = 7;
+
+    /**
+     * Decides whether the one-off feedback balloon should be shown at {@code now}.
+     * The first call only records the activation time.
+     */
+    static boolean shouldShowFeedback(@NotNull FeedbackState.State state, long now) {
+        if (state.firstActivation == 0L) {
+            state.firstActivation = now;
+            return false;
+        }
+        if (state.feedbackShown || state.dismissed) {
+            return false;
+        }
+        return java.util.concurrent.TimeUnit.MILLISECONDS.toDays(now - state.firstActivation) >= DAYS_BEFORE_PROMPT;
+    }
+
     @Nullable
     @Override
     public Object execute(@NotNull Project project, @NotNull Continuation<? super Unit> continuation) {
         FeedbackState feedbackState = FeedbackState.getInstance();
         FeedbackState.State state = feedbackState.getState();
-        long now = System.currentTimeMillis();
-
-        if (state.firstActivation == 0L) {
-            state.firstActivation = now;
-            return Unit.INSTANCE;
-        }
-
-        if (state.feedbackShown || state.dismissed) return Unit.INSTANCE;
-
-        long daysSinceFirst = (now - state.firstActivation) / (1000 * 60 * 60 * 24);
-        if (daysSinceFirst < 7) return Unit.INSTANCE;
-
+        if (!shouldShowFeedback(state, System.currentTimeMillis())) return Unit.INSTANCE;
         state.feedbackShown = true;
 
         var notification = NotificationGroupManager.getInstance()
-            .getNotificationGroup("Intel DPC++ Support Feedback")
+            .getNotificationGroup(NOTIFICATION_GROUP_ID)
             .createNotification(
                 "Intel DPC++ Support",
                 "You've been using this plugin for over a week — thank you! \uD83C\uDF89\nWe'd love your feedback to help us improve.",

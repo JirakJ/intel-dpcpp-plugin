@@ -1,46 +1,42 @@
+/*
+ * Copyright (c) 2026 Jakub Jirák.
+ * Licensed under the Apache License, Version 2.0. See LICENSE for details.
+ */
 package com.jakubjirak.dpcpp.actions;
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.Messages;
-import com.jakubjirak.dpcpp.debugger.GdbOneApiDebuggerSupport;
+import com.jakubjirak.dpcpp.oneapi.OneApiEnvironment;
+import com.jakubjirak.dpcpp.oneapi.OneApiTools;
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.file.Path;
+import java.util.Optional;
+
+/** Shows (and copies) the gdb-oneapi command for debugging SYCL kernels on the GPU. */
 public class DebugWithGdbOneApiAction extends AnAction {
-    
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getProject();
-        if (project == null) return;
-        
-        if (!GdbOneApiDebuggerSupport.isAvailable()) {
-            Messages.showErrorDialog(
-                project,
-                "gdb-oneapi debugger not found.\n\n" +
-                "Please install Intel oneAPI Base Toolkit:\n" +
-                "https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit.html\n\n" +
-                "After installation, source the environment:\n" +
-                "source /opt/intel/oneapi/setvars.sh",
-                "gdb-oneapi Not Found"
-            );
+        Optional<Path> gdb = OneApiEnvironment.locate(OneApiTools.Tool.GDB_ONEAPI);
+        if (gdb.isEmpty()) {
+            OneApiEnvironment.showMissing(project, "gdb-oneapi");
             return;
         }
-        
-        Messages.showInfoMessage(
-            project,
-            "GPU Debugging with gdb-oneapi\n\n" +
-            "Debugging features:\n" +
-            "• Set breakpoints in SYCL kernels\n" +
-            "• Inspect GPU thread state\n" +
-            "• View device memory\n" +
-            "• Step through kernel execution\n" +
-            "• Conditional breakpoints on GPU\n\n" +
-            "Configure debug configuration in Run/Debug Configurations first.",
-            "GPU Debugging"
-        );
+        OneApiEnvironment.showCommand(project, "Debug with gdb-oneapi",
+                "gdb-oneapi can set breakpoints inside SYCL kernels and inspect GPU threads. "
+                        + "Build with -g -O0 for best results.",
+                OneApiTools.gdbCommand(gdb.get().toString(), "<your-executable>"));
     }
-    
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
+    }
+
     @Override
     public void update(@NotNull AnActionEvent e) {
         e.getPresentation().setEnabledAndVisible(e.getProject() != null);

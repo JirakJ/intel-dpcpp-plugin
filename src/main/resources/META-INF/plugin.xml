@@ -3,64 +3,39 @@
     <name>Intel DPC++ Support</name>
     <vendor email="support@jakubjirak.com" url="https://github.com/jakubjirak">Jakub Jirak</vendor>
 
-    
-    <description><![CDATA[<h2>Intel DPC++ Support — SYCL 2020 and oneAPI Development for CLion</h2>
+    <description><![CDATA[<h2>Intel DPC++ Support — SYCL helpers for CLion</h2>
 
 <p>
-Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support brings comprehensive SYCL 2020 development features to CLion — from intelligent code completion to GPU debugging and VTune profiling integration.
+Editor helpers and oneAPI tool shortcuts for writing SYCL 2020 / DPC++ code in CLion.
 </p>
 
-<h3>Language Support</h3>
+<h3>Editor</h3>
 <ul>
-  <li>Full SYCL 2020 syntax highlighting with keyword and type recognition</li>
-  <li>Dedicated file types: .dpcpp and .dp.cpp</li>
-  <li>Context-aware code completion for sycl::queue, sycl::buffer, accessors, and kernels</li>
-  <li>Documentation on hover for SYCL APIs</li>
-  <li>Semantic highlighting with DPC++ annotator</li>
+  <li>File type for <code>.dpcpp</code> and <code>.dp.cpp</code> sources (handled as C++)</li>
+  <li>Completion entries for common SYCL APIs: queues, selectors, buffers, accessors, USM allocation, ranges, device info</li>
+  <li>Highlighting of <code>sycl::</code> identifiers and kernel launches (<code>parallel_for</code>, <code>single_task</code>)</li>
+  <li>Quick documentation for <code>sycl::queue</code> and <code>parallel_for</code></li>
+  <li>Live templates: <code>syclqueue</code>, <code>syclbuffer</code>, <code>syclsubmit</code>, <code>syclparallel</code>, <code>syclaccess</code>, <code>syclusm</code></li>
 </ul>
 
-<h3>Toolchain and Build</h3>
+<h3>Tools → DPC++</h3>
 <ul>
-  <li>Automatic Intel oneAPI toolchain detection</li>
-  <li>CMake integration with DPC++ compiler configuration</li>
-  <li>Project templates for quick-start DPC++ development</li>
-  <li>Six live templates: syclqueue, syclbuffer, syclsubmit, syclparallel, syclaccess, syclusm</li>
-</ul>
-
-<h3>Debugging and Profiling</h3>
-<ul>
-  <li>gdb-oneapi integration for GPU kernel debugging</li>
-  <li>GPU thread visualization and kernel stepping</li>
-  <li>Intel VTune Profiler integration (GPU hotspots, offload, memory analysis)</li>
-  <li>Intel Advisor roofline analysis and offload modeling</li>
-  <li>Kernel occupancy calculator and bandwidth estimator</li>
-</ul>
-
-<h3>Advanced Features</h3>
-<ul>
-  <li>Device Explorer tool window for browsing CPU, GPU, and FPGA devices</li>
-  <li>SYCL code quality and performance inspections</li>
-  <li>FPGA optimization analyzer with resource estimation</li>
-  <li>Multi-device orchestrator for workload distribution</li>
-  <li>AI-powered optimization suggestions</li>
-  <li>Live kernel editing with hot-reload</li>
-  <li>Intel DevCloud integration for cloud compilation on 7 device types</li>
+  <li><b>Configure oneAPI Toolchain</b> — detects oneAPI installations (via <code>$ONEAPI_ROOT</code> and the default locations) that contain <code>icpx</code></li>
+  <li><b>Profile with VTune</b> / <b>Intel Advisor Analysis</b> / <b>Debug with gdb-oneapi</b> — locate the tool and give you the ready-to-run command line (copied to the clipboard)</li>
+  <li><b>Kernel Occupancy Calculator</b> — first-order occupancy estimate for Intel Xe GPUs from work-group size, registers and local memory</li>
+  <li>Links to the DPC++ documentation and the oneAPI code samples</li>
 </ul>
 
 <h3>Requirements</h3>
 <ul>
   <li>CLion 2023.2 or later</li>
-  <li>Intel oneAPI Base Toolkit 2024.0+</li>
-  <li>CMake 3.20+</li>
-  <li>Linux, Windows, or macOS</li>
+  <li>Intel oneAPI Base Toolkit for compiling, profiling and debugging</li>
 </ul>
 
 <h3>Support</h3>
 <ul>
-  <li>GitHub: <a href="https://github.com/JirakJ/intel-dpcpp-plugin">github.com/JirakJ/intel-dpcpp-plugin</a></li>
-  <li>Issues: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/issues">Report a Bug</a></li>
-  <li>Discussions: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/discussions">Ask a Question</a></li>
-  <li>Email: support@jakubjirak.com</li>
+  <li>Source: <a href="https://github.com/JirakJ/intel-dpcpp-plugin">github.com/JirakJ/intel-dpcpp-plugin</a></li>
+  <li>Issues: <a href="https://github.com/JirakJ/intel-dpcpp-plugin/issues">Report a bug</a></li>
 </ul>]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -69,34 +44,22 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
     <extensions defaultExtensionNs="com.intellij">
         <!-- File Type -->
         <fileType 
-            name="DPC++ File" 
+            name="DPC++" 
             implementationClass="com.jakubjirak.dpcpp.DpcppFileType"
             fieldName="INSTANCE"
-            language="C++"
+            language="ObjectiveC"
             extensions="dpcpp;dp.cpp"/>
-        
-        <!-- Syntax Highlighting -->
-        <lang.syntaxHighlighterFactory 
-            language="C++" 
-            implementationClass="com.jakubjirak.dpcpp.highlighting.DpcppSyntaxHighlighterFactory"/>
-        
+
         <!-- Code Completion -->
         <completion.contributor 
-            language="C++" 
+            language="ObjectiveC" 
             implementationClass="com.jakubjirak.dpcpp.completion.DpcppCompletionContributor"/>
         
         <!-- Annotator for semantic highlighting -->
         <annotator 
-            language="C++" 
+            language="ObjectiveC" 
             implementationClass="com.jakubjirak.dpcpp.highlighting.DpcppAnnotator"/>
-        
-        <!-- Project Template - Coming in v0.2 -->
-        <!-- <directoryProjectGenerator implementation="com.jakubjirak.dpcpp.project.DpcppProjectGenerator"/> -->
-        
-        <!-- Color Settings -->
-        <colorSettingsPage 
-            implementation="com.jakubjirak.dpcpp.highlighting.DpcppColorSettingsPage"/>
-        
+
         <!-- Live Templates -->
         <defaultLiveTemplates file="/liveTemplates/DpcppTemplates.xml"/>
         <liveTemplateContext 
@@ -105,38 +68,14 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
         
         <!-- Documentation Provider -->
         <lang.documentationProvider 
-            language="C++" 
+            language="ObjectiveC" 
             implementationClass="com.jakubjirak.dpcpp.documentation.DpcppDocumentationProvider"/>
         
         <!-- Notification -->
         <notificationGroup 
             id="DPC++ Notifications" 
             displayType="BALLOON"/>
-        
-        <!-- Code Inspections -->
-        <localInspection 
-            language="C++"
-            displayName="SYCL Code Quality"
-            groupName="DPC++ / SYCL"
-            enabledByDefault="true"
-            level="WARNING"
-            implementationClass="com.jakubjirak.dpcpp.analysis.SyclCodeInspection"/>
-        
-        <localInspection 
-            language="C++"
-            displayName="SYCL Performance Optimization"
-            groupName="DPC++ / SYCL"
-            enabledByDefault="true"
-            level="WEAK WARNING"
-            implementationClass="com.jakubjirak.dpcpp.analysis.PerformanceInspection"/>
-        
-        <!-- Tool Window -->
-        <toolWindow 
-            id="DPC++ Devices"
-            anchor="right"
-            icon="/icons/dpcpp.svg"
-            factoryClass="com.jakubjirak.dpcpp.toolwindow.DeviceExplorerToolWindow"/>
-    
+
         <notificationGroup id="Intel DPC++ Support Feedback" displayType="BALLOON"/>
         <projectActivity implementation="com.jakubjirak.dpcpp.feedback.FeedbackNotifier"/>
     </extensions>
@@ -148,7 +87,7 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             <action id="DpcppNewProject" 
                     class="com.jakubjirak.dpcpp.actions.NewDpcppProjectAction"
                     text="New DPC++ Project"
-                    description="Create a new Intel DPC++ project"
+                    description="How to set up a CMake project for the DPC++ compiler"
                     icon="/icons/dpcpp.svg"/>
             
             <separator/>
@@ -175,22 +114,20 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             
             <separator/>
             
-            <!-- Advanced Actions -->
             <action id="DpcppDebugGdbOneApi"
                     class="com.jakubjirak.dpcpp.actions.DebugWithGdbOneApiAction"
                     text="Debug with gdb-oneapi"
-                    description="GPU debugging with Intel oneAPI debugger"
+                    description="Build the gdb-oneapi command line for GPU kernel debugging"
                     icon="AllIcons.Actions.StartDebugger"/>
             
             <action id="DpcppProfileVTune"
                     class="com.jakubjirak.dpcpp.actions.ProfileWithVTuneAction"
                     text="Profile with VTune"
-                    description="Performance analysis with Intel VTune Profiler"
+                    description="Build the VTune Profiler GPU analysis command line"
                     icon="AllIcons.Actions.Profile"/>
             
             <separator/>
             
-            <!-- Advanced Analysis -->
             <action id="DpcppKernelOccupancy"
                     class="com.jakubjirak.dpcpp.actions.AnalyzeKernelOccupancyAction"
                     text="Kernel Occupancy Calculator"
@@ -200,64 +137,9 @@ Develop for CPUs, GPUs, and FPGAs with a single codebase. Intel DPC++ Support br
             <action id="DpcppAdvisorRoofline"
                     class="com.jakubjirak.dpcpp.actions.AdvisorRooflineAction"
                     text="Intel Advisor Analysis"
-                    description="Roofline analysis and optimization recommendations"
+                    description="Build the Intel Advisor roofline / offload-modeling command line"
                     icon="AllIcons.Actions.ProfileCPU"/>
-            
-            <separator/>
-            
-            <!-- Advanced Features -->
-            <action id="DpcppFpgaOptimization"
-                    class="com.jakubjirak.dpcpp.actions.FpgaOptimizationAction"
-                    text="FPGA Optimization Analyzer"
-                    description="FPGA-specific optimization and resource estimation"
-                    icon="AllIcons.Nodes.ModuleGroup"/>
-            
-            <action id="DpcppMultiDevice"
-                    class="com.jakubjirak.dpcpp.actions.MultiDeviceAction"
-                    text="Multi-Device Orchestrator"
-                    description="Workload distribution across multiple devices"
-                    icon="AllIcons.Actions.MatchCase"/>
-            
-            <action id="DpcppAutoTune"
-                    class="com.jakubjirak.dpcpp.actions.AutoTuneAction"
-                    text="Auto-Tune Parameters"
-                    description="Automatic work-group size optimization"
-                    icon="AllIcons.Actions.Lightning"/>
-            
-            <separator/>
-            
-            <!-- Advanced Features -->
-            <action id="DpcppAiOptimization"
-                    class="com.jakubjirak.dpcpp.actions.AiOptimizationAction"
-                    text="AI Optimization Assistant"
-                    description="AI-powered optimization suggestions"
-                    icon="AllIcons.Actions.IntentionBulb"/>
-            
-            <action id="DpcppLiveEdit"
-                    class="com.jakubjirak.dpcpp.actions.LiveEditAction"
-                    text="Live Kernel Editor"
-                    description="Hot-reload kernels without restart"
-                    icon="AllIcons.Actions.RefactoringBulb"/>
-            
-            <action id="DpcppDevCloud"
-                    class="com.jakubjirak.dpcpp.actions.DevCloudAction"
-                    text="Intel DevCloud"
-                    description="Cloud compilation and testing"
-                    icon="AllIcons.Ide.Remote"/>
-            
-            <action id="DpcppDashboard"
-                    class="com.jakubjirak.dpcpp.actions.DashboardAction"
-                    text="Performance Dashboard"
-                    description="Visualize performance metrics"
-                    icon="AllIcons.Actions.Show"/>
         </group>
-        
-        <action id="DpcppRunGdbOneApi"
-                class="com.jakubjirak.dpcpp.actions.RunGdbOneApiAction"
-                text="Debug with gdb-oneapi"
-                description="Launch Intel oneAPI debugger"
-                icon="AllIcons.Actions.StartDebugger">
-            <add-to-group group-id="RunMenu" anchor="after" relative-to-action="Debug"/>
-        </action>
+
     </actions>
 </idea-plugin>
