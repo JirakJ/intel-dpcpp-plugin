@@ -1,272 +1,72 @@
-# Intel DPC++ CLion Plugin
+# Intel DPC++ Support for CLion
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE) ![Version](https://img.shields.io/badge/version-2026.8.0-green)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
-> **Free & open source.** Since 2026.8.0 the plugin is completely free — every feature is unlocked for everyone, no license needed — and the source code is available under the Apache License 2.0.
+> **Free & open source.** Since 2026.8.0 every feature is available to everyone, no license needed, and the
+> source code is available under the Apache License 2.0.
 
-**Comprehensive Intel oneAPI DPC++/SYCL development support for JetBrains CLion IDE.**
-
-[![oneAPI](https://img.shields.io/badge/Intel-oneAPI-0071C5.svg)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html)
+Editor helpers and Intel oneAPI tool shortcuts for writing SYCL 2020 / DPC++ code in CLion.
 
 ## Features
 
-- ✅ **SYCL 2020 Syntax Highlighting** - Keywords, parallel constructs, device selectors
-- ✅ **File Type Support** - `.dpcpp`, `.dp.cpp` file recognition  
-- ✅ **Code Completion** - SYCL API autocomplete (sycl::queue, sycl::buffer, etc.)
-- ✅ **Live Templates** - Quick code snippets for common DPC++ patterns
-- ✅ **CMake Integration** - oneAPI compiler detection
-- ✅ **Documentation on Hover** - Inline API documentation
-- ✅ **Project Templates** - Quick-start DPC++ project creation
-- ✅ **GPU Debugging** - gdb-oneapi integration with GPU thread visualization
-- ✅ **Performance Profiling** - Intel VTune Profiler integration
-- ✅ **Device Explorer** - Real-time device monitoring tool window
-- ✅ **Advanced Code Analysis** - SYCL quality and performance inspections
-- ✅ **Kernel Analysis** - Occupancy calculator & bandwidth estimator
-- ✅ **Intel Advisor** - Roofline analysis and offload modeling
-- ✅ **FPGA Optimization** - Resource estimation, pragma suggestions, pipeline analysis
-- ✅ **Multi-Device Orchestrator** - Intelligent workload distribution across devices
-- ✅ **AI Optimization** - Pattern-based suggestions
-- ✅ **Live Editing** - Hot-reload kernels without restart
-- ✅ **Performance Dashboard** - Real-time performance visualization & insights
+### Editor
+
+- **File type** — `.dpcpp` and `.dp.cpp` are recognised and handled as C++.
+- **Completion** — entries for common SYCL APIs (queues and selectors, buffers and accessors, USM allocation,
+  `range` / `nd_range`, `parallel_for`, `single_task`, device info queries).
+- **Highlighting** — `sycl::` identifiers and kernel launches (`parallel_for`, `parallel_for_work_group`,
+  `single_task`) are highlighted in C/C++ files.
+- **Quick documentation** — for `sycl::queue` and `parallel_for`, with links to the SYCL 2020 specification.
+- **Live templates** — `syclqueue`, `syclbuffer`, `syclsubmit`, `syclparallel`, `syclaccess`, `syclmain`, `syclusm`.
+
+### Tools → DPC++
+
+| Action | What it does |
+|---|---|
+| New DPC++ Project | Shows how to configure a CMake project for `icpx -fsycl` |
+| Configure oneAPI Toolchain | Detects oneAPI installations containing `icpx` (`$ONEAPI_ROOT` first, then the default install locations) |
+| Debug with gdb-oneapi | Locates `gdb-oneapi` and gives you the command line (copied to the clipboard) |
+| Profile with VTune | Locates VTune and builds the `gpu-hotspots` / `gpu-offload` / `memory-access` collection command |
+| Intel Advisor Analysis | Locates Advisor and builds the `roofline` / `offload` collection command |
+| Kernel Occupancy Calculator | First-order occupancy estimate for Intel Xe GPUs from work-group size, registers per thread and local memory |
+| DPC++ Documentation / oneAPI Code Samples | Opens the Intel documentation / the oneAPI samples repository |
+
+The tool actions do not launch the tools themselves — they find them and hand you a ready-to-run command for a
+terminal in which `setvars.sh` has been sourced.
 
 ## Requirements
 
-- **Intel oneAPI Base Toolkit** 2024.0+ (with DPC++ compiler)
-- **CLion** 2023.2 or later
-- **CMake** 3.20+
-- **Operating Systems**: Linux, Windows, macOS
+- CLion 2023.2 or later
+- Intel oneAPI Base Toolkit (DPC++ compiler, and VTune / Advisor / gdb-oneapi for the tool actions)
 
 ## Installation
 
-### From JetBrains Marketplace
-1. Open CLion
-2. Go to `Settings/Preferences` → `Plugins`
-3. Search for "Intel DPC++"
-4. Click `Install`
-5. Restart CLion
+- **JetBrains Marketplace**: Settings → Plugins → Marketplace → search "Intel DPC++ Support".
+- **Manual**: download the ZIP from [Releases](https://github.com/JirakJ/intel-dpcpp-plugin/releases) →
+  Settings → Plugins → ⚙️ → Install Plugin from Disk.
 
-### Manual Installation
-1. Download the latest `.zip` from [Releases](https://github.com/JirakJ/intel-dpcpp-plugin/releases)
-2. `Settings/Preferences` → `Plugins` → `⚙️` → `Install Plugin from Disk`
-3. Select the downloaded `.zip` file
-4. Restart CLion
+## Examples
 
-## Quick Start
+`examples/` contains small CMake projects (`vector-add`, `debugging-example`, `profiling-example`) to try the
+editor features and the tool commands on.
 
-### 1. Install Intel oneAPI
+## Development
+
 ```bash
-# Linux/macOS
-wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/...
-sudo sh ./l_BaseKit_...sh
-
-# Windows - Download installer from Intel website
+./gradlew buildPlugin     # plugin ZIP in build/distributions/
+./gradlew runIde          # sandbox CLion with the plugin installed
+./gradlew detekt test     # static analysis + unit tests
+./gradlew verifyPlugin    # JetBrains Plugin Verifier (CLion 2023.2.5 and 2024.3.6)
 ```
 
-### 2. Configure Toolchain
-```
-Tools → DPC++ → Configure oneAPI Toolchain
-```
-Plugin will auto-detect oneAPI installation.
+CI runs the same gates on GitHub-hosted runners for every pull request.
 
-### 3. Create DPC++ Project
+## Resources
 
-**Option A: Manual CMake Configuration**
-```cmake
-cmake_minimum_required(VERSION 3.20)
-project(MyDpcppProject LANGUAGES CXX)
-
-set(CMAKE_CXX_COMPILER icpx)
-set(CMAKE_CXX_STANDARD 17)
-
-add_executable(main main.cpp)
-target_compile_options(main PRIVATE -fsycl)
-target_link_options(main PRIVATE -fsycl)
-```
-
-**Option B: Use Live Templates**
-Type `syclmain` and press `Tab` for instant DPC++ skeleton:
-```cpp
-#include <sycl/sycl.hpp>
-#include <iostream>
-
-int main() {
-    try {
-        sycl::queue q{sycl::default_selector{}};
-        std::cout << "Running on: " 
-                  << q.get_device().get_info<sycl::info::device::name>()
-                  << std::endl;
-        
-        // Your DPC++ code here
-        
-    } catch (sycl::exception const& e) {
-        std::cerr << "SYCL exception: " << e.what() << std::endl;
-        return 1;
-    }
-    return 0;
-}
-```
-
-### 4. Build and Run
-```bash
-source /opt/intel/oneapi/setvars.sh  # Linux/macOS
-cmake -B build -G Ninja
-cmake --build build
-./build/main
-```
-
-## Live Templates
-
-Speed up development with built-in code snippets:
-
-| Abbreviation | Description | Expands To |
-|-------------|-------------|------------|
-| `syclqueue` | Create SYCL queue | `sycl::queue q{sycl::default_selector{}};` |
-| `syclbuffer` | Create SYCL buffer | `sycl::buffer<int> buf(N);` |
-| `syclsubmit` | Submit command group | `q.submit([&](sycl::handler& h) { ... });` |
-| `syclparallel` | Parallel for kernel | `h.parallel_for(range<1>(N), [=](id<1> idx) { ... });` |
-| `syclaccess` | Get buffer accessor | `auto acc = buf.get_access<access::mode::read_write>(h);` |
-| `syclusm` | USM allocation | `auto ptr = malloc_device<int>(N, q);` |
-
-## Code Completion
-
-IntelliSense for SYCL APIs:
-- Type `sycl::` → See all SYCL namespace entities
-- Type `.submit` → Auto-complete queue operations
-- Type `parallel_for` → Get parameter hints
-
-## GPU Debugging
-
-Debug SYCL kernels directly in CLion:
-
-**Tools → DPC++ → Debug with gdb-oneapi**
-
-Features:
-- Set breakpoints in kernels
-- Inspect GPU thread state
-- View device memory
-- Step through kernel execution
-
-📖 **[GPU Debugging Tutorial →](docs/tutorials/gpu-debugging.md)**
-
-### Command-line (Community)
-```bash
-source /opt/intel/oneapi/setvars.sh
-gdb-oneapi ./build/main
-
-# GPU debugging commands
-(gdb) info sycl devices      # List GPUs
-(gdb) info sycl kernels      # List loaded kernels
-(gdb) thread 2:4            # Switch to thread 2, SIMD lane 4
-```
-
-## Performance Profiling
-
-Optimize with Intel VTune Profiler integration:
-
-**Tools → DPC++ → Profile with VTune**
-
-Analysis types:
-- GPU Hotspots - Find performance bottlenecks
-- GPU Offload - Track host-device transfers
-- Memory Analysis - Bandwidth utilization
-
-📖 **[VTune Profiling Guide →](docs/tutorials/vtune-profiling.md)**
-
-## Documentation
-
-### Plugin Documentation
-- 🏗️ [Architecture](docs/ARCHITECTURE.md)
-- 🤝 [Contributing Guide](CONTRIBUTING.md)
-
-### Intel Resources
 - [Intel DPC++ Developer Guide](https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/developer-guide-reference/current/overview.html)
 - [SYCL 2020 Specification](https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html)
 - [oneAPI Code Samples](https://github.com/oneapi-src/oneAPI-samples)
 
-### Support
-- [GitHub Issues](https://github.com/JirakJ/intel-dpcpp-plugin/issues) - Bug reports
-- [GitHub Discussions](https://github.com/JirakJ/intel-dpcpp-plugin/discussions) - Questions
-- Email: jakub.jirak@pm.me
-
-## Development
-
-### Build Plugin
-```bash
-./gradlew buildPlugin
-# Output: build/distributions/dpcpp-clion-plugin-*.zip
-```
-
-### Run Plugin in Test IDE
-```bash
-./gradlew runIde
-```
-
-### Run Tests
-```bash
-./gradlew test
-```
-
-## Roadmap
-
-### Phase 1 (v0.1.x - Current) ✅
-- Basic syntax highlighting
-- File type support
-- CMake integration
-- Code completion
-- Live templates
-
-### Phase 2 (v0.2.x) ✅
-- gdb-oneapi debugger integration
-- GPU thread visualization
-- VTune Profiler integration
-- Device Explorer tool window
-- Advanced code inspections
-
-### Phase 3 (v0.3.x) ✅
-- Kernel occupancy analysis
-- Memory bandwidth predictor
-- Intel Advisor integration
-- SYCL refactorings (3 types)
-
-### Phase 4 (v0.4.x) ✅
-- FPGA optimization analyzer
-- Multi-device orchestrator
-- Auto-tuning framework
-
-### Phase 5 (v0.5.x) ✅
-- AI-powered optimization assistant
-- Live kernel editing with hot-reload
-- Intel DevCloud integration
-- Performance dashboard
-
-### Phase 6 (v1.0.0 - Current) ✅
-- Language Server Protocol (LSP)
-- Team collaboration features
-- CI/CD integration
-- Advanced analytics
-
-### Future (v1.1+)
-- Enhanced AI models
-- More device support
-- Performance optimization suggestions
-- Team collaboration features
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/JirakJ/intel-dpcpp-plugin/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/JirakJ/intel-dpcpp-plugin/discussions)
-- **Intel Forums**: [oneAPI Community](https://community.intel.com/t5/Intel-oneAPI-Toolkits/ct-p/oneapi)
-
-## Acknowledgments
-
-- **Intel oneAPI Team** - For DPC++/SYCL compiler and tools
-- **JetBrains** - For CLion IDE and Plugin SDK
-- **Khronos Group** - For SYCL specification
-- **Open Source Community** - For feedback and contributions
-
----
-
-**Made with ❤️ for heterogeneous computing developers**
 ## Contributing
 
 Issues and pull requests are welcome at https://github.com/JirakJ/intel-dpcpp-plugin.

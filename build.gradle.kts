@@ -1,68 +1,99 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.24"
-    id("org.jetbrains.intellij") version "1.17.3"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.intellij.platform)
+    alias(libs.plugins.detekt)
 }
 
-group = "com.jakubjirak.dpcpp"
+group = providers.gradleProperty("pluginGroup").get()
+version = providers.gradleProperty("pluginVersion").get()
 
-version = project.findProperty("pluginVersion").toString()
+kotlin {
+    jvmToolchain(providers.gradleProperty("javaVersion").get().toInt())
+}
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.2")
-}
-
-intellij {
-    version.set("2023.2.5")
-    type.set("CL")
-    plugins.set(listOf("com.intellij.cidr.lang", "com.intellij.cidr.base"))
-    updateSinceUntilBuild.set(false)
-}
-
-tasks {
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-    }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+    intellijPlatform {
+        create(
+            providers.gradleProperty("platformType"),
+            providers.gradleProperty("platformVersion"),
+        )
+        bundledPlugins("com.intellij.cidr.lang", "com.intellij.cidr.base")
+        pluginVerifier()
+        zipSigner()
     }
 
-    patchPluginXml {
-        version.set(project.version.toString())
-        sinceBuild.set("232")
-        untilBuild.set("")
-        
-        changeNotes.set("""
+    testImplementation(libs.junit.api)
+    testRuntimeOnly(libs.junit.engine)
+}
+
+// Exclude IDE-provided libraries from plugin distribution
+configurations {
+    runtimeClasspath {
+        exclude(group = "org.jetbrains.kotlin")
+        exclude(group = "org.jetbrains", module = "annotations")
+    }
+}
+
+intellijPlatform {
+    buildSearchableOptions = false
+
+    pluginConfiguration {
+        id = providers.gradleProperty("pluginGroup")
+        name = providers.gradleProperty("pluginName")
+        version = providers.gradleProperty("pluginVersion")
+
+        ideaVersion {
+            sinceBuild = providers.gradleProperty("pluginSinceBuild")
+            untilBuild = provider { null }
+        }
+
+        changeNotes = """
             <h3>2026.8.0</h3>
             <ul>
               <li>The plugin is now completely free — all features unlocked, no license needed.</li>
               <li>Source code is now open source under Apache-2.0: https://github.com/JirakJ/intel-dpcpp-plugin</li>
             </ul>
-        """.trimIndent())
-    }
-    
-
-    runPluginVerifier {
-        ideVersions.set(listOf("CL-2024.3.6"))
+        """.trimIndent()
     }
 
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+    pluginVerification {
+        ides {
+            ide("CL", "2023.2.5")
+            ide("CL", "2024.3.6")
+        }
     }
 
-    publishPlugin {
-        token.set(System.getenv("PLUGIN_TOKEN"))
-        channels.set(listOf(if (project.version.toString().contains("beta")) "beta" else "default"))
+    signing {
+        // Configure via environment variables:
+        // ORG_GRADLE_PROJECT_signCertificateChain
+        // ORG_GRADLE_PROJECT_signPrivateKey
+        // ORG_GRADLE_PROJECT_signPassword
     }
 
-    buildSearchableOptions {
-        enabled = false
+    publishing {
+        token = providers.environmentVariable("PLUGIN_TOKEN")
     }
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+
+    wrapper {
+        gradleVersion = "8.12"
+    }
+}
+
+detekt {
+    config.setFrom(files("detekt.yml"))
+    buildUponDefaultConfig = true
 }

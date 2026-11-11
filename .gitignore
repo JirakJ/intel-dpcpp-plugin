@@ -23,3 +23,9 @@ Thumbs.db
 
 # Plugin build
 build/distributions/
+
+# IntelliJ Platform Gradle plugin cache
+.intellijPlatform/
+
+# Secrets
+.env

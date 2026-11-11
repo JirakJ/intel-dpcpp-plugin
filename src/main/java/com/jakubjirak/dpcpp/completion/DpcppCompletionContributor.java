@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DpcppCompletionContributor extends CompletionContributor {
     
-    private static final String[][] SYCL_COMPLETIONS = {
+    static final String[][] SYCL_COMPLETIONS = {
         // Queue operations
         {"sycl::queue", "SYCL queue for submitting commands"},
         {"sycl::gpu_selector{}", "Select GPU device"},
