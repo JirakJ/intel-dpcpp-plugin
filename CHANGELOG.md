@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2026.9.0] - 2026-11-11
+
 ### Fixed
 - Completion, SYCL highlighting and quick documentation were registered for a language id CLion does not use (`C++`), so they never activated; they now attach to CLion's C/C++ language.
 - The DPC++ syntax highlighter replaced CLion's C++ lexer with an empty one; it has been removed so C++ highlighting is untouched.
