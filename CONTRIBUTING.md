@@ -59,7 +59,7 @@ src/main/
 - Attach relevant logs from `Help → Show Log in Finder/Explorer`
 
 ### Feature Requests
-- Open a [Discussion](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions)
+- Open a [Discussion](https://github.com/JirakJ/intel-dpcpp-plugin/discussions)
 - Describe use case and expected behavior
 - Consider Intel partnership opportunities for major features
 
@@ -85,7 +85,6 @@ src/main/
 
 ### Testing
 - Unit tests for all new functionality
-- Integration tests for IDE interactions
 - Manual testing in sandbox IDE (`./gradlew runIde`)
 
 ## Areas for Contribution
@@ -110,21 +109,12 @@ src/main/
 
 ## Release Process
 
-Automated via GitHub Actions:
-
-1. **Commit to `develop`** → Build and test
-2. **Merge to `main`** → Build, test, and publish to JetBrains Marketplace
-3. **Version**: Auto-incremented as `0.MINOR.YYYYMMDDHHmm`
-
-Manual release:
-```bash
-export BUILD_NUMBER=$(date +%Y%m%d%H%M)
-./gradlew buildPlugin publishPlugin
-```
+Releases are cut manually by the maintainer (version in `gradle.properties`, changelog, tag, then
+`./gradlew publishPlugin`). Every pull request runs `buildPlugin`, `detekt`, `test` and `verifyPlugin` in CI.
 
 ## Community
 
-- **Discussions**: [GitHub Discussions](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions)
+- **Discussions**: [GitHub Discussions](https://github.com/JirakJ/intel-dpcpp-plugin/discussions)
 - **Intel Forums**: [oneAPI Community](https://community.intel.com/t5/Intel-oneAPI-Toolkits/ct-p/oneapi)
 - **Email**: jakub.jirak@pm.me (for security issues)
 
@@ -138,4 +128,4 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 
 ---
 
-**Questions?** Open a [Discussion](https://github.com/jakubjirak/dpcpp-clion-plugin/discussions) or ping maintainers in Issues.
+**Questions?** Open a [Discussion](https://github.com/JirakJ/intel-dpcpp-plugin/discussions) or ping maintainers in Issues.

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2026 Jakub Jirák.
+ * Licensed under the Apache License, Version 2.0. See LICENSE for details.
+ */
 package com.jakubjirak.dpcpp.actions;
 
 import com.intellij.notification.Notification;
@@ -5,63 +9,40 @@ import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.util.SystemInfo;
+import com.jakubjirak.dpcpp.oneapi.OneApiEnvironment;
+import com.jakubjirak.dpcpp.oneapi.OneApiTools;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.nio.file.Path;
 import java.util.List;
 
+/** Detects Intel oneAPI installations that contain the DPC++ compiler and reports them. */
 public class ConfigureToolchainAction extends AnAction {
-    
-    private static final String[] ONEAPI_PATHS = {
-        "/opt/intel/oneapi",
-        System.getProperty("user.home") + "/intel/oneapi",
-        "C:\\Program Files (x86)\\Intel\\oneAPI",
-        "/usr/local/intel/oneapi"
-    };
+
+    static final String NOTIFICATION_GROUP = "DPC++ Notifications";
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        List<String> foundPaths = new ArrayList<>();
-        
-        for (String path : ONEAPI_PATHS) {
-            File oneapiDir = new File(path);
-            if (oneapiDir.exists() && oneapiDir.isDirectory()) {
-                File compilerDir = new File(oneapiDir, "compiler/latest/bin");
-                if (compilerDir.exists()) {
-                    File icpx = new File(compilerDir, isWindows() ? "icpx.exe" : "icpx");
-                    if (icpx.exists()) {
-                        foundPaths.add(path);
-                    }
-                }
-            }
-        }
-        
-        if (foundPaths.isEmpty()) {
-            Notifications.Bus.notify(new Notification(
-                "DPC++ Notifications",
-                "Intel oneAPI Not Found",
-                "Could not detect Intel oneAPI installation.\n" +
-                "Please install from: https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html",
-                NotificationType.WARNING
-            ), e.getProject());
-        } else {
-            StringBuilder message = new StringBuilder("Found Intel oneAPI installations:\n\n");
-            for (String path : foundPaths) {
-                message.append("• ").append(path).append("\n");
-            }
-            message.append("\nConfigure in Settings > Build > Toolchains");
-            
-            Notifications.Bus.notify(new Notification(
-                "DPC++ Notifications",
-                "Intel oneAPI Detected",
-                message.toString(),
-                NotificationType.INFORMATION
-            ), e.getProject());
-        }
+        List<Path> found = OneApiTools.installations(OneApiEnvironment.roots(), SystemInfo.isWindows);
+        Notification notification = found.isEmpty()
+                ? new Notification(NOTIFICATION_GROUP, "Intel oneAPI not found",
+                        "No DPC++ compiler (icpx) found in $ONEAPI_ROOT or the default install locations. "
+                                + "Install from " + OneApiEnvironment.INSTALL_URL,
+                        NotificationType.WARNING)
+                : new Notification(NOTIFICATION_GROUP, "Intel oneAPI detected", describe(found),
+                        NotificationType.INFORMATION);
+        Notifications.Bus.notify(notification, e.getProject());
     }
-    
-    private boolean isWindows() {
-        return System.getProperty("os.name").toLowerCase().contains("win");
+
+    /** Human-readable summary of detected installations. */
+    static String describe(List<Path> installations) {
+        StringBuilder message = new StringBuilder("Found Intel oneAPI installations:\n");
+        for (Path path : installations) {
+            message.append("• ").append(path).append('\n');
+        }
+        message.append("Configure the toolchain under Settings > Build, Execution, Deployment > Toolchains "
+                + "(C++ compiler: icpx, add -fsycl in CMakeLists.txt).");
+        return message.toString();
     }
 }
